@@ -1,27 +1,38 @@
 import React, { Component } from "react";
-import { Container } from "react-bootstrap";
+import { Container, Alert, Badge } from "react-bootstrap";
+import { Filter, FilterType } from "../data/";
 
 class Tags extends Component {
-  onTagClick = e => {
-    console.log(e.target);
+  onTagClick = (e, tagName) => {
+    this.props.switchTag(tagName);
+    this.props.filterPosts(
+      this.props.posts,
+      new Filter(FilterType.TAG, tagName)
+    );
     e.preventDefault();
   };
 
   Tags = () => {
-    const posts = this.props.posts;
-    const tags = Array.from(new Set(posts.map(post => post.tags).flat()));
-    
-    return tags.map(tag => (
-      <a key={tag} onClick={this.onTagClick}>
-        {tag}
-      </a>
+    return this.props.tags.map(tag => (
+      <Alert.Link
+        className="mr-1"
+        key={tag.name}
+        onClick={e => this.onTagClick(e, tag.name)}
+      >
+        {tag.name}
+        <Badge variant="success" className="ml-1">
+          {tag.quantity}
+        </Badge>
+        <Badge variant="light" className="ml-1">
+          {tag.state ? "x" : ""}
+        </Badge>
+      </Alert.Link>
     ));
   };
 
   render() {
     return (
       <Container className="Tags">
-        Tags:
         <div>
           <p className="d-flex flex-wrap">
             <this.Tags />

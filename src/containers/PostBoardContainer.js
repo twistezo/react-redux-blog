@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import PostBoard from "../components/PostsBoard";
 
 const mapStateToProps = state => ({
-  posts: state.posts
+  filteredPosts: state.filteredPosts
 });
 
 export const PostBoardContainer = connect(mapStateToProps)(PostBoard);

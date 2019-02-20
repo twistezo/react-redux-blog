@@ -1,14 +1,13 @@
 import { connect } from "react-redux";
-import { fetchPosts } from "../actions";
+import { fetchPosts, filterPosts, unwrapTags } from "../actions";
 import App from "../components/App";
 
-const sortPostsByDateDesc = posts =>
-  posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
 const mapStateToProps = state => ({
-  posts: sortPostsByDateDesc(state.posts)
+  posts: state.posts,
+  tags: state.tags
 });
-const mapDispatchToProps = { fetchPosts };
+
+const mapDispatchToProps = { fetchPosts, filterPosts, unwrapTags };
 
 export const AppContainer = connect(
   mapStateToProps,
