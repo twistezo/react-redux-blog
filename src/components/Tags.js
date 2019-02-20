@@ -3,13 +3,13 @@ import { Container, Alert, Badge } from "react-bootstrap";
 import { Filter, FilterType } from "../data/";
 
 class Tags extends Component {
-  onTagClick = (e, tagName) => {
+  onTagClick = (event, tagName) => {
     this.props.switchTag(tagName);
     this.props.filterPosts(
       this.props.posts,
-      new Filter(FilterType.TAG, tagName)
+      new Filter(FilterType.TAG, this.props.tags)
     );
-    e.preventDefault();
+    event.preventDefault();
   };
 
   Tags = () => {
@@ -17,7 +17,7 @@ class Tags extends Component {
       <Alert.Link
         className="mr-1"
         key={tag.name}
-        onClick={e => this.onTagClick(e, tag.name)}
+        onClick={event => this.onTagClick(event, tag.name)}
       >
         {tag.name}
         <Badge variant="success" className="ml-1">

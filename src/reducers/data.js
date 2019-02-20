@@ -1,14 +1,9 @@
-import {
-  unwrapTagsFromPosts,
-  sortPostsByDateDesc,
-  switchTagState,
-  filterPostsBy
-} from "./reducersUtils";
+import ReducersUtils from "./reducersUtils";
 
 export const posts = (state = [], action) => {
   switch (action.type) {
     case "FETCH_POSTS_SUCCESS":
-      return [...sortPostsByDateDesc(action.posts)];
+      return [...ReducersUtils.sortPostsByDateDesc(action.posts)];
     default:
       return state;
   }
@@ -17,7 +12,7 @@ export const posts = (state = [], action) => {
 export const filteredPosts = (state = [], action) => {
   switch (action.type) {
     case "FILTER_POSTS":
-      return [...filterPostsBy(action.posts, action.filter)];
+      return [...ReducersUtils.filterPostsBy(action.posts, action.filter)];
     default:
       return state;
   }
@@ -26,9 +21,9 @@ export const filteredPosts = (state = [], action) => {
 export const tags = (state = [], action) => {
   switch (action.type) {
     case "UNWRAP_TAGS":
-      return [...unwrapTagsFromPosts(action.posts)];
+      return [...ReducersUtils.unwrapTagsFromPosts(action.posts)];
     case "SWITCH_TAG":
-      return [...switchTagState(action.tagName, state)];
+      return [...ReducersUtils.switchTagState(action.tagName, state)];
     default:
       return state;
   }

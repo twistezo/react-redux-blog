@@ -4,8 +4,9 @@ import { Container } from "react-bootstrap";
 
 class PostsBoard extends Component {
   PostCards = () => {
-    const posts = this.props.filteredPosts;
-    return posts.map(post => <PostCard key={post.id} post={post} />);
+    return this.props.filteredPosts.map(post => (
+      <PostCard key={post.id} post={post} />
+    ));
   };
 
   render() {

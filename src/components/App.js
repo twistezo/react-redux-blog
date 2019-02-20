@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { DataGenerator } from "../data/generator";
 import Navbar from "./Navbar";
 import SidePanel from "./SidePanel";
-import { PostBoardContainer } from "../containers/PostBoardContainer";
+import { PostsBoardContainer } from "../containers/PostsBoardContainer";
 import { Row, Col } from "react-bootstrap";
 import { Filter, FilterType } from "../data/";
 
@@ -13,9 +13,9 @@ class App extends Component {
       .then(posts => {
         this.props.fetchPosts(posts);
         this.props.unwrapTags(posts);
-        this.props.filterPosts(posts, new Filter(FilterType.NONE, ""));
-        console.log("store:");
-        console.log(window.store.getState());
+        this.props.filterPosts(posts, new Filter(FilterType.NONE));
+        // console.log("store:");
+        // console.log(window.store.getState());
       })
       .catch(err => {
         // console.log(err);
@@ -24,7 +24,7 @@ class App extends Component {
 
   componentDidUpdate() {
     // console.log("store:");
-    console.log(window.store.getState());
+    // console.log(window.store.getState());
   }
 
   render() {
@@ -36,7 +36,7 @@ class App extends Component {
             <SidePanel />
           </Col>
           <Col xs={9}>
-            <PostBoardContainer />
+            <PostsBoardContainer />
           </Col>
         </Row>
       </div>

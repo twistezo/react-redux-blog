@@ -1,46 +1,48 @@
 import { FilterType } from "../data/";
+import DataUtils from "../data/dataUtils";
 
-export const sortPostsByDateDesc = posts =>
-  posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+class ReducersUtils {
+  static sortPostsByDateDesc = posts =>
+    posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
-export const unwrapTagsFromPosts = posts => {
-  const allTags = Array.from(posts.map(post => post.tags).flat());
-  const uniqueTags = Array.from(new Set(allTags));
+  static unwrapTagsFromPosts = posts => {
+    const allTags = Array.from(posts.map(post => post.tags).flat());
+    const uniqueTags = Array.from(new Set(allTags));
 
-  let uniqueWithQuantity = [];
-  uniqueTags.forEach(uniqueTag =>
-    uniqueWithQuantity.push({
-      name: uniqueTag,
-      quantity: allTags.filter(tag => tag === uniqueTag).length,
-      state: false
-    })
-  );
+    let uniqueWithQuantity = [];
+    uniqueTags.forEach(uniqueTag =>
+      uniqueWithQuantity.push({
+        name: uniqueTag,
+        quantity: allTags.filter(tag => tag === uniqueTag).length,
+        state: false
+      })
+    );
 
-  return uniqueWithQuantity;
-};
+    return uniqueWithQuantity;
+  };
 
-export const switchTagState = (tagName, tags) => {
-  let tag = tags.find(tag => tag.name === tagName);
-  tag.state = !tag.state;
-  return tags;
-};
+  static switchTagState = (tagName, tags) => {
+    let tag = tags.find(tag => tag.name === tagName);
+    tag.state = !tag.state;
+    return tags;
+  };
 
-export const filterPostsBy = (posts, filter) => {
-  switch (filter.type) {
-    case FilterType.NONE:
-      console.log("none");
-      return posts;
-    case FilterType.TAG:
-      console.log("tag");
-      return posts.filter(post =>
-        post.tags.some(tag => tag.toLowerCase() === filter.data.toLowerCase())
-      );
-    case FilterType.TITLE:
-      console.log("title");
-      break;
-    case FilterType.TEXT:
-      console.log("text");
-      break;
-    default:
-  }
-};
+  static filterPostsBy = (posts, filter) => {
+    switch (filter.type) {
+      case FilterType.NONE:
+        return posts;
+      case FilterType.TAG:
+        const turnedOnTags = filter.data
+          .filter(tag => tag.state)
+          .map(tag => tag.name);
+        return posts.filter(post =>
+          DataUtils.arrayContainsAllElementsFromAnother(post.tags, turnedOnTags)
+        );
+      case FilterType.TITLE:
+        return posts.filter(post => post.title.includes(filter.data));
+      default:
+    }
+  };
+}
+
+export default ReducersUtils;

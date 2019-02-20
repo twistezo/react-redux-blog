@@ -5,4 +5,4 @@ const mapStateToProps = state => ({
   filteredPosts: state.filteredPosts
 });
 
-export const PostBoardContainer = connect(mapStateToProps)(PostBoard);
+export const PostsBoardContainer = connect(mapStateToProps)(PostBoard);
