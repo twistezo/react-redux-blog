@@ -15,9 +15,7 @@ class Archives extends Component {
           <ul key={date.year} className="list-unstyled">
             <Alert.Link onClick={event => this.onDateClick(event, date.year)}>
               {date.year}
-              <Badge variant="light" className="ml-1">
-                {date.yearState ? "x" : ""}
-              </Badge>
+              {date.yearState ? <i className="far fa-check-square ml-2" /> : ""}
             </Alert.Link>
             {date.months.map(month => (
               <li key={month.name}>
@@ -27,12 +25,13 @@ class Archives extends Component {
                   }
                 >
                   {month.name}
-                  <Badge variant="success" className="ml-1">
-                    {month.quantity}
-                  </Badge>
-                  <Badge variant="light" className="ml-1">
-                    {month.state ? "x" : ""}
-                  </Badge>
+                  {month.state ? (
+                    <i className="far fa-check-square ml-2" />
+                  ) : (
+                    <Badge variant="secondary" className="ml-2">
+                      {month.quantity}
+                    </Badge>
+                  )}
                 </Alert.Link>
               </li>
             ))}
@@ -43,8 +42,8 @@ class Archives extends Component {
 
   render() {
     return (
-      <Container className="Archives">
-        Archive posts:
+      <Container>
+        <h4>Archive posts</h4>
         <this.Dates />
       </Container>
     );

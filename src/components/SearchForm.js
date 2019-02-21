@@ -18,9 +18,10 @@ class SearchForm extends Component {
           className="mr-sm-2"
           name="search"
           type="text"
-          placeholder="search by title"
+          placeholder="search"
           onChange={this.handleSearchFormInputChange}
         />
+        <i className="fas fa-search" />
       </Form>
     );
   }

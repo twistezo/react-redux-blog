@@ -21,7 +21,7 @@ class PostsBoard extends Component {
 
   render() {
     return (
-      <Container className="PostsBoard">
+      <Container>
         {this.props.filteredPosts.length !== 0 ? (
           <this.PostCards />
         ) : (

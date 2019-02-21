@@ -1,23 +1,35 @@
-.PostsBoard {
-  background-color: aliceblue;
+@import url("https://use.fontawesome.com/releases/v5.7.0/css/all.css");
+@import url("https://fonts.googleapis.com/css?family=Lato:200,300,400,700");
+$font-family-base: Lato;
+@import url("https://fonts.googleapis.com/css?family=Quicksand:200,300,400,700");
+$headings-font-family: Quicksand;
+
+$enable-grid-classes: false;
+$primary: #528078;
+$secondary: #eed75a;
+$success: #fec100;
+$danger: #703b3b;
+$info: #63e792;
+$warning: #ffe869;
+$light: #fdfbf7;
+$dark: #555555;
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import "../node_modules/bootstrap/scss/functions";
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+@import "../node_modules/bootstrap/scss/reboot";
+@import "../node_modules/bootstrap/scss/type";
+@import "../node_modules/bootstrap/scss/images";
+@import "../node_modules/bootstrap/scss/code";
+@import "../node_modules/bootstrap/scss/grid";
+
+a,
+.alert-link {
+  color: inherit;
+  font-weight: inherit;
 }
 
-.SidePanel {
-  background-color: bisque;
-}
-
-.AboutMe {
-  background-color: burlywood;
-}
-
-.Tags {
-  background-color: cornsilk;
-}
-
-.Archives {
-  background-color: cornsilk;
-}
-
-.PostCard {
-  background-color: antiquewhite;
+.fas,
+.far {
+  color: $info;
 }

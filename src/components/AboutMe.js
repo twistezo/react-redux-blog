@@ -3,7 +3,11 @@ import { Container } from "react-bootstrap";
 
 class AboutMe extends Component {
   render() {
-    return <Container className="AboutMe">AboutMe</Container>;
+    return (
+      <Container>
+        <h4>About Me</h4>
+      </Container>
+    );
   }
 }
 

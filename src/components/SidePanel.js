@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import AboutMe from "./AboutMe";
 import { TagsContainer } from "../containers/TagsContainer";
 import { ArchivesContainer } from "../containers/ArchivesContainer";
@@ -7,21 +7,15 @@ import { ArchivesContainer } from "../containers/ArchivesContainer";
 class SidePanel extends Component {
   render() {
     return (
-      <Container className="SidePanel">
-        <Row>
-          <Col>
-            <AboutMe />
-          </Col>
+      <Container>
+        <Row className="pb-2">
+          <AboutMe />
         </Row>
-        <Row>
-          <Col>
-            <TagsContainer />
-          </Col>
+        <Row className="pb-2">
+          <TagsContainer />
         </Row>
-        <Row>
-          <Col>
-            <ArchivesContainer />
-          </Col>
+        <Row className="pb-2">
+          <ArchivesContainer />
         </Row>
       </Container>
     );

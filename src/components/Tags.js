@@ -13,17 +13,18 @@ class Tags extends Component {
     return tags.length > 0
       ? tags.map(tag => (
           <Alert.Link
-            className="mr-1"
+            className="mr-2"
             key={tag.name}
             onClick={event => this.onTagClick(event, tag.name)}
           >
             {tag.name}
-            <Badge variant="success" className="ml-1">
-              {tag.quantity}
-            </Badge>
-            <Badge variant="light" className="ml-1">
-              {tag.state ? "x" : ""}
-            </Badge>
+            {tag.state ? (
+              <i className="far fa-check-square ml-2" />
+            ) : (
+              <Badge variant="secondary" className="ml-2">
+                {tag.quantity}
+              </Badge>
+            )}
           </Alert.Link>
         ))
       : "";
@@ -31,9 +32,9 @@ class Tags extends Component {
 
   render() {
     return (
-      <Container className="Tags">
+      <Container>
         <div>
-          Tags:
+          <h4>Tags</h4>
           <p className="d-flex flex-wrap">
             <this.Tags />
           </p>

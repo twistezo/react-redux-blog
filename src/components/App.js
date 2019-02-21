@@ -3,7 +3,7 @@ import { DataGenerator } from "../data/generator";
 import Navbar from "./Navbar";
 import SidePanel from "./SidePanel";
 import { PostsBoardContainer } from "../containers/PostsBoardContainer";
-import { Row, Col } from "react-bootstrap";
+import { Row, Col, Container } from "react-bootstrap";
 
 class App extends Component {
   constructor() {
@@ -64,14 +64,16 @@ class App extends Component {
     return (
       <div>
         <Navbar />
-        <Row className="pt-5">
-          <Col xs={3}>
-            <SidePanel />
-          </Col>
-          <Col xs={9}>
-            <PostsBoardContainer />
-          </Col>
-        </Row>
+        <Container>
+          <Row className="pt-5">
+            <Col sm={3}>
+              <SidePanel />
+            </Col>
+            <Col sm={9}>
+              <PostsBoardContainer />
+            </Col>
+          </Row>
+        </Container>
       </div>
     );
   };
