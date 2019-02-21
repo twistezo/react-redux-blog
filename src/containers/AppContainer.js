@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { fetchPosts, filterPosts, unwrapTags } from "../actions";
+import { fetchPosts, filterPosts, unwrapTags, unwrapDates } from "../actions";
 import App from "../components/App";
 
 const mapStateToProps = state => ({
@@ -7,7 +7,7 @@ const mapStateToProps = state => ({
   tags: state.tags
 });
 
-const mapDispatchToProps = { fetchPosts, filterPosts, unwrapTags };
+const mapDispatchToProps = { fetchPosts, filterPosts, unwrapTags, unwrapDates };
 
 export const AppContainer = connect(
   mapStateToProps,

@@ -27,21 +27,120 @@ class ReducersUtils {
     return tags;
   };
 
-  static filterPostsBy = (posts, filter) => {
-    switch (filter.type) {
-      case FilterType.NONE:
-        return posts;
-      case FilterType.TAG:
-        const turnedOnTags = filter.data
-          .filter(tag => tag.state)
-          .map(tag => tag.name);
-        return posts.filter(post =>
-          DataUtils.arrayContainsAllElementsFromAnother(post.tags, turnedOnTags)
-        );
-      case FilterType.TITLE:
-        return posts.filter(post => post.title.includes(filter.data));
-      default:
+  static filterPostsBy = (posts, tags, dates, searchValue) => {
+    if (
+      DataUtils.isNullEmptyOrUndefinded(tags) &&
+      DataUtils.isNullEmptyOrUndefinded(dates) &&
+      DataUtils.isNullEmptyOrUndefinded(searchValue)
+    ) {
+      return posts;
     }
+
+    let filtered = [];
+    const switchedOnTags = tags.filter(tag => tag.state).map(tag => tag.name);
+    filtered = posts.filter(
+      post =>
+        // by tags
+        DataUtils.arrayContainsAllElementsFromAnother(
+          post.tags,
+          switchedOnTags
+        ) &&
+        // by searchValue (title)
+        post.title.toLowerCase().includes(searchValue.toLowerCase())
+    );
+
+    // by date - years
+    let switchedOnYears = dates
+      .filter(date => date.yearState)
+      .map(date => date.year);
+    if (switchedOnYears.length !== 0) {
+      filtered = filtered.filter(post =>
+        DataUtils.arrayContainsAllElementsFromAnother(switchedOnYears, [
+          post.date.getFullYear()
+        ])
+      );
+    }
+
+    // by date - months
+    let switchedOnMonths = dates
+      .map(date =>
+        date.months
+          .map(month => ({
+            year: date.year,
+            month: month.name,
+            state: month.state
+          }))
+          .flat()
+      )
+      .flat()
+      .filter(month => month.state);
+    if (switchedOnMonths.length !== 0) {
+      filtered = filtered.filter(
+        post =>
+          switchedOnMonths.some(
+            item => item.year === post.date.getFullYear()
+          ) &&
+          switchedOnMonths.some(
+            item => item.month === ReducersUtils.monthNameFromDate(post.date)
+          )
+      );
+    }
+    return filtered;
+  };
+
+  static unwrapDatesFromPosts = posts => {
+    const years = Array.from(
+      new Set(posts.map(post => post.date.getFullYear()))
+    );
+
+    let yearsWithMonths = [];
+    years.forEach(year =>
+      yearsWithMonths.push({
+        year: year,
+        yearState: false,
+        months: Array.from(
+          new Set(
+            posts
+              .filter(post => post.date.getFullYear() === year)
+              .map(post => ReducersUtils.monthNameFromDate(post.date))
+          )
+        ).map(month => ({
+          name: month,
+          quantity: ReducersUtils.postsQuantityByDate(posts, month, year),
+          state: false
+        }))
+      })
+    );
+    return yearsWithMonths;
+  };
+
+  static postsQuantityByDate = (posts, month, year) =>
+    posts.filter(
+      post =>
+        post.date.getFullYear() === year &&
+        ReducersUtils.monthNameFromDate(post.date) === month
+    ).length;
+
+  static monthNameFromDate = date =>
+    date.toLocaleString("en-us", { month: "long" });
+
+  static switchDateState = (dateToSwitch, archiveDates) => {
+    if (dateToSwitch.month === undefined) {
+      let date = archiveDates.find(date => date.year === dateToSwitch.year);
+      date.yearState = !date.yearState;
+      // reset all months state
+      archiveDates.forEach(date =>
+        date.months.forEach(month => (month.state = false))
+      );
+    } else {
+      let month = archiveDates
+        .find(date => date.year === dateToSwitch.year)
+        .months.find(month => month.name === dateToSwitch.month);
+      month.state = !month.state;
+      // reset all years state
+      archiveDates.forEach(date => (date.yearState = false));
+    }
+    return archiveDates;
   };
 }
 

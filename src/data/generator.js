@@ -28,9 +28,9 @@ class DataGenerator {
       );
     }
 
-    return DataUtils.checkNullEmptyOrUndefinded(this._data)
-      ? this._data
-      : new Error("Generate data failed.");
+    return DataUtils.isNullEmptyOrUndefinded(this._data)
+      ? new Error("Generate data failed.")
+      : this._data;
   };
 
   fetch = quantity =>

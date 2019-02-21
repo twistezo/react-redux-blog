@@ -4,7 +4,6 @@ import Navbar from "./Navbar";
 import SidePanel from "./SidePanel";
 import { PostsBoardContainer } from "../containers/PostsBoardContainer";
 import { Row, Col } from "react-bootstrap";
-import { Filter, FilterType } from "../data/";
 
 class App extends Component {
   componentDidMount() {
@@ -13,25 +12,19 @@ class App extends Component {
       .then(posts => {
         this.props.fetchPosts(posts);
         this.props.unwrapTags(posts);
-        this.props.filterPosts(posts, new Filter(FilterType.NONE));
-        // console.log("store:");
-        // console.log(window.store.getState());
+        this.props.unwrapDates(posts);
+        this.props.filterPosts(posts);
       })
       .catch(err => {
-        // console.log(err);
+        console.log(err);
       });
-  }
-
-  componentDidUpdate() {
-    // console.log("store:");
-    // console.log(window.store.getState());
   }
 
   render() {
     return (
       <div>
         <Navbar />
-        <Row>
+        <Row className="pt-5">
           <Col xs={3}>
             <SidePanel />
           </Col>

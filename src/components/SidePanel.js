@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import AboutMe from "./AboutMe";
 import { TagsContainer } from "../containers/TagsContainer";
-import Archives from "./Archives";
+import { ArchivesContainer } from "../containers/ArchivesContainer";
 
 class SidePanel extends Component {
   render() {
@@ -20,7 +20,7 @@ class SidePanel extends Component {
         </Row>
         <Row>
           <Col>
-            <Archives />
+            <ArchivesContainer />
           </Col>
         </Row>
       </Container>

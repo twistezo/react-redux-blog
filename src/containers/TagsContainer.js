@@ -1,13 +1,15 @@
 import { connect } from "react-redux";
-import { switchTag, filterPosts } from "../actions";
+import { switchTagState, filterPosts } from "../actions";
 import Tags from "../components/Tags";
 
 const mapStateToProps = state => ({
   posts: state.posts,
-  tags: state.tags
+  tags: state.tags,
+  dates: state.dates,
+  searchValue: state.searchValue
 });
 
-const mapDispatchToProps = { switchTag, filterPosts };
+const mapDispatchToProps = { switchTagState, filterPosts };
 
 export const TagsContainer = connect(
   mapStateToProps,

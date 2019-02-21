@@ -3,10 +3,12 @@ export const fetchPosts = posts => ({
   posts
 });
 
-export const filterPosts = (posts, filter) => ({
+export const filterPosts = (posts, tags, dates, searchValue) => ({
   type: "FILTER_POSTS",
   posts,
-  filter
+  tags,
+  dates,
+  searchValue
 });
 
 export const unwrapTags = posts => ({
@@ -14,7 +16,22 @@ export const unwrapTags = posts => ({
   posts
 });
 
-export const switchTag = tagName => ({
+export const switchTagState = tagName => ({
   type: "SWITCH_TAG",
   tagName
+});
+
+export const unwrapDates = posts => ({
+  type: "UNWRAP_DATES",
+  posts
+});
+
+export const switchDateState = date => ({
+  type: "SWITCH_DATE_STATE",
+  date
+});
+
+export const handleSearchInput = value => ({
+  type: "HANDLE_SEARCH_INPUT",
+  value
 });

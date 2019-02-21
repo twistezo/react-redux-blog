@@ -2,8 +2,8 @@ class DataUtils {
   static randomArrayItem = array =>
     array[Math.floor(Math.random() * array.length)];
 
-  static checkNullEmptyOrUndefinded = value =>
-    value !== null && value !== [] && value !== undefined;
+  static isNullEmptyOrUndefinded = value =>
+    value === null || value === [] || value === undefined;
 
   static arrayFromArrayRandomItems = array =>
     Array.from(array).filter(() => DataUtils.randomBoolean());

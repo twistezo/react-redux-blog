@@ -36,7 +36,8 @@ class Post {
 const FilterType = Object.freeze({
   NONE: Symbol("none"),
   TAG: Symbol("tag"),
-  TITLE: Symbol("title")
+  TITLE: Symbol("title"),
+  DATE: Symbol("date"),
 });
 
 class Filter {

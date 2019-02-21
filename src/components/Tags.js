@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Container, Alert, Badge } from "react-bootstrap";
-import { Filter, FilterType } from "../data/";
 
 class Tags extends Component {
   onTagClick = (event, tagName) => {
-    this.props.switchTag(tagName);
+    this.props.switchTagState(tagName);
     this.props.filterPosts(
       this.props.posts,
-      new Filter(FilterType.TAG, this.props.tags)
+      this.props.tags,
+      this.props.dates,
+      this.props.searchValue
     );
     event.preventDefault();
   };
@@ -34,6 +35,7 @@ class Tags extends Component {
     return (
       <Container className="Tags">
         <div>
+          Tags:
           <p className="d-flex flex-wrap">
             <this.Tags />
           </p>
