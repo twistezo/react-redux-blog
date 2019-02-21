@@ -9,10 +9,24 @@ class PostsBoard extends Component {
     ));
   };
 
+  EmptyResult = () => {
+    return (
+      <div className="text-center pt-5">
+        <div className="pb-2">
+          <h2>Nothing here...</h2>
+        </div>
+      </div>
+    );
+  };
+
   render() {
     return (
       <Container className="PostsBoard">
-        <this.PostCards />
+        {this.props.filteredPosts.length !== 0 ? (
+          <this.PostCards />
+        ) : (
+          <this.EmptyResult />
+        )}
       </Container>
     );
   }

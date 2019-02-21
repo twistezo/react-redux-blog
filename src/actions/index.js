@@ -1,14 +1,12 @@
 export const fetchPosts = posts => ({
-  type: "FETCH_POSTS_SUCCESS",
+  type: "FETCH_POSTS",
   posts
 });
 
-export const filterPosts = (posts, tags, dates, searchValue) => ({
+export const filterPosts = (posts, filters) => ({
   type: "FILTER_POSTS",
   posts,
-  tags,
-  dates,
-  searchValue
+  filters
 });
 
 export const unwrapTags = posts => ({

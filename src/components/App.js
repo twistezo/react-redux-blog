@@ -6,21 +6,61 @@ import { PostsBoardContainer } from "../containers/PostsBoardContainer";
 import { Row, Col } from "react-bootstrap";
 
 class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      error: {
+        occured: false,
+        message: ""
+      }
+    };
+  }
+
   componentDidMount() {
     new DataGenerator()
       .fetch(10)
       .then(posts => {
         this.props.fetchPosts(posts);
-        this.props.unwrapTags(posts);
-        this.props.unwrapDates(posts);
-        this.props.filterPosts(posts);
+      })
+      .then(() => {
+        this.props.unwrapTags(this.props.posts);
+        this.props.unwrapDates(this.props.posts);
+      })
+      .then(() => {
+        this.props.filterPosts(this.props.posts, this.props.filters);
       })
       .catch(err => {
-        console.log(err);
+        this.setState({
+          error: {
+            occured: true,
+            message: err.message
+          }
+        });
       });
   }
 
-  render() {
+  ErrorContainer = () => {
+    return (
+      <div className="text-center pt-5">
+        <div className="pb-2">
+          <h2>Error. Please reload the page.</h2>
+          <h5>Error message: "{this.state.error.message}"</h5>
+        </div>
+      </div>
+    );
+  };
+
+  WaitContainer = () => {
+    return (
+      <div className="text-center pt-5">
+        <div className="pb-2">
+          <h2>Downloading data...</h2>
+        </div>
+      </div>
+    );
+  };
+
+  MainContainer = () => {
     return (
       <div>
         <Navbar />
@@ -34,6 +74,16 @@ class App extends Component {
         </Row>
       </div>
     );
+  };
+
+  render() {
+    if (this.props.posts.length !== 0 && !this.state.error.occured) {
+      return <this.MainContainer />;
+    } else if (this.state.error.occured) {
+      return <this.ErrorContainer />;
+    } else {
+      return <this.WaitContainer />;
+    }
   }
 }
 

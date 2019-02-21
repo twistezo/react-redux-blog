@@ -3,7 +3,7 @@ class DataUtils {
     array[Math.floor(Math.random() * array.length)];
 
   static isNullEmptyOrUndefinded = value =>
-    value === null || value === [] || value === undefined;
+    value === null || value === [] || value === undefined || value.length === 0;
 
   static arrayFromArrayRandomItems = array =>
     Array.from(array).filter(() => DataUtils.randomBoolean());

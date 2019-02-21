@@ -4,31 +4,29 @@ import { Container, Alert, Badge } from "react-bootstrap";
 class Tags extends Component {
   onTagClick = (event, tagName) => {
     this.props.switchTagState(tagName);
-    this.props.filterPosts(
-      this.props.posts,
-      this.props.tags,
-      this.props.dates,
-      this.props.searchValue
-    );
+    this.props.filterPosts(this.props.posts, this.props.filters);
     event.preventDefault();
   };
 
   Tags = () => {
-    return this.props.tags.map(tag => (
-      <Alert.Link
-        className="mr-1"
-        key={tag.name}
-        onClick={event => this.onTagClick(event, tag.name)}
-      >
-        {tag.name}
-        <Badge variant="success" className="ml-1">
-          {tag.quantity}
-        </Badge>
-        <Badge variant="light" className="ml-1">
-          {tag.state ? "x" : ""}
-        </Badge>
-      </Alert.Link>
-    ));
+    const tags = this.props.filters.tags;
+    return tags.length > 0
+      ? tags.map(tag => (
+          <Alert.Link
+            className="mr-1"
+            key={tag.name}
+            onClick={event => this.onTagClick(event, tag.name)}
+          >
+            {tag.name}
+            <Badge variant="success" className="ml-1">
+              {tag.quantity}
+            </Badge>
+            <Badge variant="light" className="ml-1">
+              {tag.state ? "x" : ""}
+            </Badge>
+          </Alert.Link>
+        ))
+      : "";
   };
 
   render() {

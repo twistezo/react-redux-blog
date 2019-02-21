@@ -4,9 +4,7 @@ import Archive from "../components/Archives";
 
 const mapStateToProps = state => ({
   posts: state.posts,
-  tags: state.tags,
-  dates: state.dates,
-  searchValue: state.searchValue
+  filters: state.filters
 });
 
 const mapDispatchToProps = { filterPosts, switchDateState };

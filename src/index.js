@@ -1,14 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { createStore, applyMiddleware } from "redux";
+import thunk from "redux-thunk";
 import rootReducer from "./reducers";
 import { AppContainer } from "./containers/AppContainer";
 import "./index.scss";
 import * as serviceWorker from "./serviceWorker";
 
-const store = createStore(rootReducer);
-// TODO: remove
+const store = createStore(rootReducer, applyMiddleware(thunk));
+// TODO: Remove. For debugging purposes only!
 window.store = store;
 
 ReactDOM.render(

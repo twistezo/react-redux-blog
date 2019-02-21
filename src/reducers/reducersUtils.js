@@ -1,4 +1,3 @@
-import { FilterType } from "../data/";
 import DataUtils from "../data/dataUtils";
 
 class ReducersUtils {
@@ -27,14 +26,10 @@ class ReducersUtils {
     return tags;
   };
 
-  static filterPostsBy = (posts, tags, dates, searchValue) => {
-    if (
-      DataUtils.isNullEmptyOrUndefinded(tags) &&
-      DataUtils.isNullEmptyOrUndefinded(dates) &&
-      DataUtils.isNullEmptyOrUndefinded(searchValue)
-    ) {
-      return posts;
-    }
+  static filterPostsBy = (posts, filters) => {
+    const tags = filters.tags;
+    const dates = filters.dates;
+    const searchValue = filters.searchValue;
 
     let filtered = [];
     const switchedOnTags = tags.filter(tag => tag.state).map(tag => tag.name);

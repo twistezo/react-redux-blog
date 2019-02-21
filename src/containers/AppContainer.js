@@ -4,7 +4,7 @@ import App from "../components/App";
 
 const mapStateToProps = state => ({
   posts: state.posts,
-  tags: state.tags
+  filters: state.filters
 });
 
 const mapDispatchToProps = { fetchPosts, filterPosts, unwrapTags, unwrapDates };

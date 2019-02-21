@@ -1,16 +1,14 @@
 import React, { Component } from "react";
 import { Form, FormControl } from "react-bootstrap";
 
-class Navbar extends Component {
+class SearchForm extends Component {
   handleSearchFormInputChange = event => {
     const value = event.target.value;
     this.props.handleSearchInput(value);
-    this.props.filterPosts(
-      this.props.posts,
-      this.props.tags,
-      this.props.dates,
-      value
-    );
+
+    let filters = Object.assign({}, this.props.filters);
+    filters.searchValue = value;
+    this.props.filterPosts(this.props.posts, filters);
   };
 
   render() {
@@ -28,4 +26,4 @@ class Navbar extends Component {
   }
 }
 
-export default Navbar;
+export default SearchForm;

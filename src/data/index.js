@@ -33,26 +33,4 @@ class Post {
   }
 }
 
-const FilterType = Object.freeze({
-  NONE: Symbol("none"),
-  TAG: Symbol("tag"),
-  TITLE: Symbol("title"),
-  DATE: Symbol("date"),
-});
-
-class Filter {
-  constructor(type, data) {
-    this._type = type;
-    this._data = data;
-  }
-
-  get type() {
-    return this._type;
-  }
-
-  get data() {
-    return this._data;
-  }
-}
-
-export { Post, Filter, FilterType };
+export { Post };
