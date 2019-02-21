@@ -1,6 +1,6 @@
 ## Blog
 
-<img src="https://static.wixstatic.com/media/007afd_76d5aec5161c45d58b2858d9f15b76c8~mv2.jpeg" height="100">
+<img src="https://static.wixstatic.com/media/007afd_76d5aec5161c45d58b2858d9f15b76c8~mv2.jpeg" height="200">
 
 ### Description
 
