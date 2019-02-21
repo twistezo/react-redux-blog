@@ -8,7 +8,7 @@ Blog created with React, Redux.
 
 ### Features
 
-- search and filter through posts tags, dates and input field.
+- search and filter through posts tags, dates and titles
 
 ### Tools
 
@@ -18,8 +18,26 @@ React, Redux, Bootstrap
 
 npm
 
-### Build, run
+### Build, run, test
 
 Firstly: `npm install`
 
 To run in development mode: `npm start`
+
+To build in production mode: `npm run build`
+
+To run locally prod mode:
+
+```
+npm install -g serve
+serve -s build
+
+```
+
+### Latest version
+
+https://twistezo.github.io/react-redux-blog/
+
+```
+
+```
