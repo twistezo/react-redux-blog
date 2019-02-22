@@ -9,6 +9,8 @@ Blog created with React, Redux.
 ### Features
 
 - search and filter through posts tags, dates and titles
+- create post with Markdown markup langauge
+- live preview while creating post
 
 ### Tools
 
