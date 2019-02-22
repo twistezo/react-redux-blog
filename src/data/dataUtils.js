@@ -5,8 +5,10 @@ class DataUtils {
   static isNullEmptyOrUndefinded = value =>
     value === null || value === [] || value === undefined || value.length === 0;
 
-  static arrayFromArrayRandomItems = array =>
-    Array.from(array).filter(() => DataUtils.randomBoolean());
+  static arrayFromArrayRandomItems = array => {
+    const result = Array.from(array).filter(() => DataUtils.randomBoolean());
+    return result.length === 0 ? [array[0]] : result;
+  };
 
   static randomBoolean = () => Math.random() >= 0.5;
 
