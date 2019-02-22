@@ -33,3 +33,8 @@ export const handleSearchInput = value => ({
   type: "HANDLE_SEARCH_INPUT",
   value
 });
+
+export const resetFilters = filters => ({
+  type: "RESET_FILTERS",
+  filters
+});

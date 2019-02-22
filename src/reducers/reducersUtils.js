@@ -137,6 +137,17 @@ class ReducersUtils {
     }
     return archiveDates;
   };
+
+  static resetFilters = filters => {
+    let reseted = Object.assign({}, filters);
+    reseted.tags.forEach(tag => (tag.state = false));
+    reseted.dates.forEach(date => (date.yearState = false));
+    reseted.dates.forEach(date =>
+      date.months.forEach(month => (month.state = false))
+    );
+    reseted.searchValue = "";
+    return reseted;
+  };
 }
 
 export default ReducersUtils;

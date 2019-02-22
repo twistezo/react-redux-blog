@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { filterPosts, handleSearchInput } from "../actions";
-import SearchForm from "../components/SearchForm";
+import SearchForm from "../components/Navbar/SearchForm";
 
 const mapStateToProps = state => ({
   posts: state.posts,

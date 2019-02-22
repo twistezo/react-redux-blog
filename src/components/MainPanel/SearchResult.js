@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import PostCard from "./PostCard";
+import PostCardHorizontal from "./PostCards/PostCardHorizontal";
 import { Container } from "react-bootstrap";
 
-class PostsBoard extends Component {
+class SearchResult extends Component {
   PostCards = () => {
     return this.props.filteredPosts.map(post => (
-      <PostCard key={post.id} post={post} />
+      <PostCardHorizontal key={post.id} post={post} />
     ));
   };
 
@@ -32,4 +32,4 @@ class PostsBoard extends Component {
   }
 }
 
-export default PostsBoard;
+export default SearchResult;

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Container, Row } from "react-bootstrap";
 import AboutMe from "./AboutMe";
-import { TagsContainer } from "../containers/TagsContainer";
-import { ArchivesContainer } from "../containers/ArchivesContainer";
+import { TagsContainer } from "../../containers/TagsContainer";
+import { ArchivesContainer } from "../../containers/ArchivesContainer";
 
 class SidePanel extends Component {
   render() {

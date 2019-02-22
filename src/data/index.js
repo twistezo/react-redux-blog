@@ -1,11 +1,12 @@
 class Post {
-  constructor(id, title, text, author, date, tags) {
+  constructor(id, title, text, author, date, tags, mainImage) {
     this._id = id;
     this._title = title;
     this._text = text;
     this._author = author;
     this._date = date;
     this._tags = tags;
+    this._mainImage = mainImage;
   }
 
   get id() {
@@ -30,6 +31,10 @@ class Post {
 
   get tags() {
     return this._tags;
+  }
+
+  get mainImage() {
+    return this._mainImage;
   }
 }
 

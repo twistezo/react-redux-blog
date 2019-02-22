@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import { switchTagState, filterPosts } from "../actions";
-import Tags from "../components/Tags";
+import Tags from "../components/SidePanel/Tags";
 
 const mapStateToProps = state => {
   return {

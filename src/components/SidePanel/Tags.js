@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import { Container, Alert, Badge } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Container, Badge } from "react-bootstrap";
+import App from "../App";
 
 class Tags extends Component {
   onTagClick = (event, tagName) => {
@@ -12,20 +14,22 @@ class Tags extends Component {
     const tags = this.props.filters.tags;
     return tags.length > 0
       ? tags.map(tag => (
-          <Alert.Link
-            className="mr-2"
+          <div
+            className="mr-2 alert-link"
             key={tag.name}
             onClick={event => this.onTagClick(event, tag.name)}
           >
-            {tag.name}
-            {tag.state ? (
-              <i className="far fa-check-square ml-2" />
-            ) : (
-              <Badge variant="secondary" className="ml-2">
-                {tag.quantity}
-              </Badge>
-            )}
-          </Alert.Link>
+            <Link to={App.publicURL + "/search"}>
+              {tag.name}
+              {tag.state ? (
+                <i className="far fa-check-square ml-2" />
+              ) : (
+                <Badge variant="secondary" className="ml-2">
+                  {tag.quantity}
+                </Badge>
+              )}
+            </Link>
+          </div>
         ))
       : "";
   };
@@ -35,9 +39,9 @@ class Tags extends Component {
       <Container>
         <div>
           <h4>Tags</h4>
-          <p className="d-flex flex-wrap">
+          <span className="d-flex flex-wrap">
             <this.Tags />
-          </p>
+          </span>
         </div>
       </Container>
     );

@@ -15,7 +15,7 @@ class DataGenerator {
       this._data.push(
         new Post(
           uuidv1(),
-          chance.sentence({ words: 10 }),
+          chance.sentence({ words: 6 }),
           chance.paragraph({ sentences: 20 }),
           "twistezo",
           chance.date({
@@ -23,7 +23,10 @@ class DataGenerator {
             american: false,
             year: DataUtils.randomArrayItem([2017, 2018, 2019])
           }),
-          DataUtils.arrayFromArrayRandomItems(this._tags)
+          DataUtils.arrayFromArrayRandomItems(this._tags),
+          "https://avatars.dicebear.com/v2/identicon/" +
+            chance.word({ length: 15 }) +
+            ".svg"
         )
       );
     }

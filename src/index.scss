@@ -23,6 +23,10 @@ $dark: #555555;
 @import "../node_modules/bootstrap/scss/code";
 @import "../node_modules/bootstrap/scss/grid";
 
+html {
+  overflow-y: scroll;
+}
+
 a,
 .alert-link {
   color: inherit;
@@ -32,4 +36,8 @@ a,
 .fas,
 .far {
   color: $info;
+}
+
+.card-img-top {
+  height: 100px;
 }

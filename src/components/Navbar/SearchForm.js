@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Form, FormControl } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import App from "../App";
 
 class SearchForm extends Component {
   handleSearchFormInputChange = event => {
@@ -14,13 +16,16 @@ class SearchForm extends Component {
   render() {
     return (
       <Form inline>
-        <FormControl
-          className="mr-sm-2"
-          name="search"
-          type="text"
-          placeholder="search"
-          onChange={this.handleSearchFormInputChange}
-        />
+        <Link to={App.publicURL + "/search"}>
+          <FormControl
+            className="mr-sm-2"
+            name="search"
+            type="text"
+            value={this.props.filters.searchValue}
+            placeholder="search"
+            onChange={this.handleSearchFormInputChange}
+          />
+        </Link>
         <i className="fas fa-search" />
       </Form>
     );

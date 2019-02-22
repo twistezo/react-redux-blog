@@ -1,11 +1,16 @@
 import React, { Component } from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { DataGenerator } from "../data/generator";
-import Navbar from "./Navbar";
-import SidePanel from "./SidePanel";
-import { PostsBoardContainer } from "../containers/PostsBoardContainer";
+import { NavbarContainer } from "../containers/NavbarContainer";
+import SidePanel from "./SidePanel/SidePanel";
+import { SearchResultContainer } from "../containers/SearchResultContainer";
+import { MainBoardContainer } from "../containers/MainBoardContainer";
+import { PostContainer } from "../containers/PostContainer";
 import { Row, Col, Container } from "react-bootstrap";
 
 class App extends Component {
+  static publicURL = process.env.PUBLIC_URL;
+
   constructor() {
     super();
     this.state = {
@@ -39,6 +44,10 @@ class App extends Component {
       });
   }
 
+  componentDidUpdate() {
+    // console.log(window.store.getState());
+  }
+
   ErrorContainer = () => {
     return (
       <div className="text-center pt-5">
@@ -62,19 +71,37 @@ class App extends Component {
 
   MainContainer = () => {
     return (
-      <div>
-        <Navbar />
-        <Container>
-          <Row className="pt-5">
-            <Col sm={3}>
-              <SidePanel />
-            </Col>
-            <Col sm={9}>
-              <PostsBoardContainer />
-            </Col>
-          </Row>
-        </Container>
-      </div>
+      <Router>
+        <div>
+          <NavbarContainer />
+          <Container>
+            <Row className="pt-5">
+              <Col sm={3}>
+                <SidePanel />
+              </Col>
+              <Col sm={9}>
+                <Switch>
+                  <Route
+                    exact
+                    path={App.publicURL + "/"}
+                    component={MainBoardContainer}
+                  />
+                  <Route
+                    path={App.publicURL + "/search"}
+                    component={SearchResultContainer}
+                  />
+                  <Route
+                    path={App.publicURL + "/post/id-:id"}
+                    component={route => (
+                      <PostContainer routeParamId={route.match.params.id} />
+                    )}
+                  />
+                </Switch>
+              </Col>
+            </Row>
+          </Container>
+        </div>
+      </Router>
     );
   };
 
