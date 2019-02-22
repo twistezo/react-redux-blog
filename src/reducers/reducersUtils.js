@@ -80,7 +80,7 @@ class ReducersUtils {
           )
       );
     }
-    return filtered;
+    return ReducersUtils.sortPostsByDateDesc(filtered);
   };
 
   static unwrapDatesFromPosts = posts => {

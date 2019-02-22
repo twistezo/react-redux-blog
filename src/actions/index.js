@@ -3,6 +3,11 @@ export const fetchPosts = posts => ({
   posts
 });
 
+export const addPost = post => ({
+  type: "ADD_POST",
+  post
+});
+
 export const filterPosts = (posts, filters) => ({
   type: "FILTER_POSTS",
   posts,

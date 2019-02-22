@@ -6,6 +6,7 @@ import SidePanel from "./SidePanel/SidePanel";
 import { SearchResultContainer } from "../containers/SearchResultContainer";
 import { MainBoardContainer } from "../containers/MainBoardContainer";
 import { PostContainer } from "../containers/PostContainer";
+import { AddPostContainer } from "../containers/AddPostContainer";
 import { Row, Col, Container } from "react-bootstrap";
 
 class App extends Component {
@@ -95,6 +96,10 @@ class App extends Component {
                     component={route => (
                       <PostContainer routeParamId={route.match.params.id} />
                     )}
+                  />
+                  <Route
+                    path={App.publicURL + "/addpost"}
+                    component={AddPostContainer}
                   />
                 </Switch>
               </Col>

@@ -23,6 +23,9 @@ class Navbar extends Component {
           </Link>
           <SearchFormContainer />
           <Form inline>
+            <Link to={App.publicURL + "/addpost"}>
+              <Button variant="outline-info mr-4">Add Post</Button>
+            </Link>
             <Button variant="outline-info mr-4">Sign in</Button>
           </Form>
         </Container>

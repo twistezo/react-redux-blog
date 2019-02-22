@@ -22,7 +22,7 @@ class PostsCard extends Component {
                   <h5 className="card-title">{post.title}</h5>
                 </Link>
                 <p className="card-text">
-                  {post.text.substring(0, 150) + " ..."}
+                  {post.shortDescription.substring(0, 150) + "..."}
                 </p>
                 <span className="card-text">
                   <p className="text-muted mb-0">

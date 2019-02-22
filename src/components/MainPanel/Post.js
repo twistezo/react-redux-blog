@@ -8,8 +8,12 @@ class Post extends Component {
     );
     return (
       <div>
-        <h2>{post.title}</h2>
-        <div>{post.text}</div>
+        <h1>{post.title}</h1>
+        <p>{post.shortDescription}</p>
+        <div
+          className="content pt-3"
+          dangerouslySetInnerHTML={{ __html: post.text }}
+        />
       </div>
     );
   };
