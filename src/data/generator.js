@@ -24,7 +24,7 @@ class DataGenerator {
           this._chance.date({
             string: false,
             american: false,
-            year: DataUtils.randomArrayItem([2017, 2018, 2019])
+            year: DataUtils.randomArrayItem([2016, 2017, 2018])
           }),
           DataUtils.arrayFromArrayRandomItems(this._tags),
           "https://avatars.dicebear.com/v2/identicon/" +
