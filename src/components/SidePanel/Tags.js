@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Badge } from "react-bootstrap";
-import App from "../App";
+import { PUBLIC_URL } from "../../index";
 
 class Tags extends Component {
   onTagClick = (event, tagName) => {
@@ -19,7 +19,7 @@ class Tags extends Component {
             key={tag.name}
             onClick={event => this.onTagClick(event, tag.name)}
           >
-            <Link to={App.publicURL + "/search"}>
+            <Link to={PUBLIC_URL + "/search"}>
               {tag.name}
               {tag.state ? (
                 <i className="far fa-check-square ml-2" />

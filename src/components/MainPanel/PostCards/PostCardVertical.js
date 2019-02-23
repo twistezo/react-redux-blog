@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import App from "../../App";
+import { PUBLIC_URL } from "../../../index";
 
 class PostsCardVertical extends Component {
   render() {
     const post = this.props.post;
-    const postURL = App.publicURL + "/post/id-" + post.id;
+    const postURL = PUBLIC_URL + "/post/id-" + post.id;
     return (
       <div className="card">
         <Link to={postURL}>

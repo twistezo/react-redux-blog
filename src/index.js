@@ -5,8 +5,19 @@ import { createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import rootReducer from "./reducers";
 import { AppContainer } from "./containers/AppContainer";
-import "./index.scss";
 import * as serviceWorker from "./serviceWorker";
+import hljs from "highlight.js";
+import "./index.scss";
+import "./dracula.css";
+
+export const PUBLIC_URL = process.env.PUBLIC_URL;
+
+export const updateCodeSyntaxHighlighting = () => {
+  document.querySelectorAll("pre code").forEach(block => {
+    hljs.highlightBlock(block);
+  });
+};
+
 
 const store = createStore(rootReducer, applyMiddleware(thunk));
 // TODO: Remove. For debugging purposes only!

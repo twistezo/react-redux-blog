@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import { Row, Col, Container } from "react-bootstrap";
 import { DataGenerator } from "../data/generator";
 import { NavbarContainer } from "../containers/NavbarContainer";
 import SidePanel from "./SidePanel/SidePanel";
@@ -7,11 +8,9 @@ import { SearchResultContainer } from "../containers/SearchResultContainer";
 import { MainBoardContainer } from "../containers/MainBoardContainer";
 import { PostContainer } from "../containers/PostContainer";
 import { AddPostContainer } from "../containers/AddPostContainer";
-import { Row, Col, Container } from "react-bootstrap";
+import { PUBLIC_URL } from "../index";
 
 class App extends Component {
-  static publicURL = process.env.PUBLIC_URL;
-
   constructor() {
     super();
     this.state = {
@@ -84,21 +83,21 @@ class App extends Component {
                 <Switch>
                   <Route
                     exact
-                    path={App.publicURL + "/"}
+                    path={PUBLIC_URL + "/"}
                     component={MainBoardContainer}
                   />
                   <Route
-                    path={App.publicURL + "/search"}
+                    path={PUBLIC_URL + "/search"}
                     component={SearchResultContainer}
                   />
                   <Route
-                    path={App.publicURL + "/post/id-:id"}
+                    path={PUBLIC_URL + "/post/id-:id"}
                     component={route => (
                       <PostContainer routeParamId={route.match.params.id} />
                     )}
                   />
                   <Route
-                    path={App.publicURL + "/addpost"}
+                    path={PUBLIC_URL + "/addpost"}
                     component={AddPostContainer}
                   />
                 </Switch>

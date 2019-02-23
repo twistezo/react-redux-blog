@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Navbar as BsNavbar, Form, Button, Container } from "react-bootstrap";
 import { SearchFormContainer } from "../../containers/SearchFormContainer";
-import App from "../App";
+import { PUBLIC_URL } from "../../index";
 
 class Navbar extends Component {
   handleLogoClick = () => {
@@ -18,12 +18,12 @@ class Navbar extends Component {
     return (
       <BsNavbar bg="dark" variant="dark" className="sticky-top text-center">
         <Container>
-          <Link to={App.publicURL + "/"} onClick={this.handleLogoClick}>
+          <Link to={PUBLIC_URL + "/"} onClick={this.handleLogoClick}>
             <BsNavbar.Brand className="ml-4">Home</BsNavbar.Brand>
           </Link>
           <SearchFormContainer />
           <Form inline>
-            <Link to={App.publicURL + "/addpost"}>
+            <Link to={PUBLIC_URL + "/addpost"}>
               <Button variant="outline-info mr-4">Add Post</Button>
             </Link>
             <Button variant="outline-info mr-4">Sign in</Button>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Form, FormControl } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import App from "../App";
+import { PUBLIC_URL } from "../../index";
 
 class SearchForm extends Component {
   handleSearchFormInputChange = event => {
@@ -16,7 +16,7 @@ class SearchForm extends Component {
   render() {
     return (
       <Form inline>
-        <Link to={App.publicURL + "/search"}>
+        <Link to={PUBLIC_URL + "/search"}>
           <FormControl
             className="mr-sm-2"
             name="search"

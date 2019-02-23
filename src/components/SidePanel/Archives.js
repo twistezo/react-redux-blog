@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Container, Badge } from "react-bootstrap";
-import App from "../App";
+import { PUBLIC_URL } from "../../index";
 
 class Archives extends Component {
   onDateClick = (event, year, month) => {
@@ -19,7 +19,7 @@ class Archives extends Component {
               className="alert-link"
               onClick={event => this.onDateClick(event, date.year)}
             >
-              <Link to={App.publicURL + "/search"}>
+              <Link to={PUBLIC_URL + "/search"}>
                 {date.year}
                 {date.yearState ? (
                   <i className="far fa-check-square ml-2" />
@@ -36,7 +36,7 @@ class Archives extends Component {
                     this.onDateClick(event, date.year, month.name)
                   }
                 >
-                  <Link to={App.publicURL + "/search"}>
+                  <Link to={PUBLIC_URL + "/search"}>
                     {month.name}
                     {month.state ? (
                       <i className="far fa-check-square ml-2" />

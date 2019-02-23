@@ -1,6 +1,15 @@
 import React, { Component } from "react";
+import { updateCodeSyntaxHighlighting } from "../../../index";
 
 class Preview extends Component {
+  componentDidMount() {
+    updateCodeSyntaxHighlighting();
+  }
+
+  componentDidUpdate() {
+    updateCodeSyntaxHighlighting();
+  }
+
   render() {
     return (
       <div className="pt-3">

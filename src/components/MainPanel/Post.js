@@ -1,7 +1,16 @@
 import React, { Component } from "react";
 import { Container } from "react-bootstrap";
+import { updateCodeSyntaxHighlighting } from "../../index";
 
 class Post extends Component {
+  componentDidMount() {
+    updateCodeSyntaxHighlighting();
+  }
+
+  componentDidUpdate() {
+    updateCodeSyntaxHighlighting();
+  }
+
   PostContainer = () => {
     const post = this.props.posts.find(
       post => post.id === this.props.routeParamId
