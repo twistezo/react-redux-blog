@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Row, Col, Container } from "react-bootstrap";
-import { DataGenerator } from "../data/generator";
 import { NavbarContainer } from "../containers/NavbarContainer";
 import SidePanel from "./SidePanel/SidePanel";
 import { SearchResultContainer } from "../containers/SearchResultContainer";
@@ -9,6 +8,7 @@ import { MainBoardContainer } from "../containers/MainBoardContainer";
 import { PostContainer } from "../containers/PostContainer";
 import { AddPostContainer } from "../containers/AddPostContainer";
 import { PUBLIC_URL } from "../index";
+import DataUtils from "../data/dataUtils";
 
 class App extends Component {
   constructor() {
@@ -22,30 +22,21 @@ class App extends Component {
   }
 
   componentDidMount() {
-    new DataGenerator()
-      .fetch(10)
-      .then(posts => {
-        this.props.fetchPosts(posts);
-      })
-      .then(() => {
-        this.props.unwrapTags(this.props.posts);
-        this.props.unwrapDates(this.props.posts);
-      })
-      .then(() => {
-        this.props.filterPosts(this.props.posts, this.props.filters);
-      })
-      .catch(err => {
-        this.setState({
-          error: {
-            occured: true,
-            message: err.message
-          }
-        });
-      });
+    this.props.fetchPosts();
+    // DataUtils.addPostsToFirestore(20);
   }
 
-  componentDidUpdate() {
+  componentDidUpdate(prevProps) {
     // console.log(window.store.getState());
+    const posts = this.props.posts;
+    if (posts !== prevProps.posts) {
+      this.setState({
+        error: {
+          occured: posts.error.occured,
+          message: posts.error.message
+        }
+      });
+    }
   }
 
   ErrorContainer = () => {

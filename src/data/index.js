@@ -43,6 +43,10 @@ class Post {
     return this._date;
   }
 
+  set date(date) {
+    this._date = date;
+  }
+
   get tags() {
     return this._tags;
   }

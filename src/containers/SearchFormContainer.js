@@ -3,7 +3,7 @@ import { filterPosts, handleSearchInput } from "../actions";
 import SearchForm from "../components/Navbar/SearchForm";
 
 const mapStateToProps = state => ({
-  posts: state.posts,
+  posts: state.posts.data,
   filters: state.filters
 });
 

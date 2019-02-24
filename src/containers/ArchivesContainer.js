@@ -3,7 +3,7 @@ import { filterPosts, switchDateState } from "../actions";
 import Archive from "../components/SidePanel/Archives";
 
 const mapStateToProps = state => ({
-  posts: state.posts,
+  posts: state.posts.data,
   filters: state.filters
 });
 

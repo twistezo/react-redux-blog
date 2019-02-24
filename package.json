@@ -6,6 +6,8 @@
   "dependencies": {
     "bootstrap": "^4.3.1",
     "chance": "^1.0.18",
+    "firebase": "^5.8.4",
+    "firebase-admin": "^7.0.0",
     "gh-pages": "^2.0.1",
     "highlight.js": "^9.14.2",
     "node-sass": "^4.11.0",

@@ -1,12 +1,21 @@
+/**
+ * Reducers
+ *
+ * Reducers specify how the application's state changes in response to actions
+ * sent to the store. Remember that actions only describe what happened but
+ * don't describe how the application's state changes.
+ */
+
 import { combineReducers } from "redux";
 import ReducersUtils from "./reducersUtils";
 
 const posts = (state = [], action) => {
   switch (action.type) {
     case "FETCH_POSTS":
-      return [...ReducersUtils.sortPostsByDateDesc(action.posts)];
-    case "ADD_POST":
-      return [...state, action.post];
+      return {
+        data: [...ReducersUtils.sortPostsByDateDesc(action.posts)],
+        error: action.error
+      };
     default:
       return state;
   }

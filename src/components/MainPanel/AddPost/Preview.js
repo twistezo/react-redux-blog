@@ -1,13 +1,13 @@
 import React, { Component } from "react";
-import { updateCodeSyntaxHighlighting } from "../../../index";
+import DataUtils from "../../../data/dataUtils";
 
 class Preview extends Component {
   componentDidMount() {
-    updateCodeSyntaxHighlighting();
+    DataUtils.updateCodeSyntaxHighlighting();
   }
 
   componentDidUpdate() {
-    updateCodeSyntaxHighlighting();
+    DataUtils.updateCodeSyntaxHighlighting();
   }
 
   render() {
@@ -19,7 +19,9 @@ class Preview extends Component {
         <p>{this.props.shortDescription}</p>
         <div
           className="content pt-3"
-          dangerouslySetInnerHTML={{ __html: this.props.parsedText }}
+          dangerouslySetInnerHTML={{
+            __html: DataUtils.convertMarkdownToHtml(this.props.parsedText)
+          }}
         />
       </div>
     );

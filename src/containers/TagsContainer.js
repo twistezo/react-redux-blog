@@ -4,7 +4,7 @@ import Tags from "../components/SidePanel/Tags";
 
 const mapStateToProps = state => {
   return {
-    posts: state.posts,
+    posts: state.posts.data,
     filters: state.filters
   };
 };

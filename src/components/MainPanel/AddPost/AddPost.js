@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import uuidv1 from "uuid/v1";
 import { Form, Button, Col, Row } from "react-bootstrap";
 import { Container } from "react-bootstrap";
-import showdown from "showdown";
-import { exampleText } from "./exampleText";
+import { Post } from "../../../data/index";
+import DataUtils from "../../../data/dataUtils";
 import Preview from "./Preview";
 import FormattingHelp from "./FormattingHelp";
-import { Post } from "../../../data/index";
 
 class AddPost extends Component {
   constructor(props) {
@@ -17,21 +16,12 @@ class AddPost extends Component {
         shortDescription: "",
         text: ""
       },
-      parsedText: [],
+      parsedText: "",
       controllers: {
         showFormattingHelp: false,
         shouldClearPastedExample: false
       }
     };
-    this.mdToHtmlConverter = new showdown.Converter({ noHeaderId: true });
-  }
-
-  componentDidUpdate(prevProps) {
-    if (this.props.posts !== prevProps.posts) {
-      this.props.unwrapTags(this.props.posts);
-      this.props.unwrapDates(this.props.posts);
-      this.props.filterPosts(this.props.posts, this.props.filters);
-    }
   }
 
   handleShowFormattingHelp = () => {
@@ -49,7 +39,9 @@ class AddPost extends Component {
     const shortDescription = shouldClearPastedExample
       ? "Example short description"
       : "";
-    const text = shouldClearPastedExample ? exampleText : "";
+    const text = shouldClearPastedExample
+      ? DataUtils.generateExampleMarkdownText()
+      : "";
 
     this.setState({
       ...this.state,
@@ -58,7 +50,7 @@ class AddPost extends Component {
         shortDescription,
         text
       },
-      parsedText: this.mdToHtmlConverter.makeHtml(text),
+      parsedText: text,
       controllers: {
         ...this.state.controllers,
         shouldClearPastedExample
@@ -69,7 +61,7 @@ class AddPost extends Component {
   handleInputChange = event => {
     let text = event.target.value;
     const parsedText =
-      event.target.name === "text" ? this.mdToHtmlConverter.makeHtml(text) : [];
+      event.target.name === "text" ? text : this.state.parsedText;
     this.setState({
       ...this.state,
       formInput: {

@@ -3,7 +3,7 @@ import Navbar from "../components/Navbar/Navbar";
 import { resetFilters, filterPosts } from "../actions";
 
 const mapStateToProps = state => ({
-  posts: state.posts,
+  posts: state.posts.data,
   filters: state.filters
 });
 
