@@ -30,6 +30,8 @@ class DataUtils {
       })
       .every(e => e);
 
+  static getEmailPrefix = email => email.slice(0, email.indexOf("@"));
+
   static generateExampleMarkdownText = () => {
     const chance = new Chance();
     const randomSentence = words => chance.sentence({ words });

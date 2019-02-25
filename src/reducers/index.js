@@ -11,10 +11,15 @@ import ReducersUtils from "./reducersUtils";
 
 const posts = (state = [], action) => {
   switch (action.type) {
-    case "FETCH_POSTS":
+    case "POSTS_FETCHED_SUCCESS":
       return {
         data: [...ReducersUtils.sortPostsByDateDesc(action.posts)],
-        error: action.error
+        fetchingError: null
+      };
+    case "POSTS_FETCHED_ERROR":
+      return {
+        data: [],
+        fetchingError: action.fetchingError
       };
     default:
       return state;
@@ -70,8 +75,28 @@ const filters = (state = filtersShape, action) => {
   }
 };
 
+const auth = (state = {}, action) => {
+  switch (action.type) {
+    case "SIGNED_IN":
+      return {
+        ...state,
+        isSignedIn: action.isSignedIn,
+        errorMessage: action.errorMessage
+      };
+    case "FETCHED_USER_DATA":
+      return {
+        ...state,
+        displayName: action.displayName,
+        email: action.email
+      };
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   posts,
   filteredPosts,
-  filters
+  filters,
+  auth
 });

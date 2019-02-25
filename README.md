@@ -11,6 +11,7 @@ Blog created with React, Redux.
 - search and filter through posts tags, dates and titles
 - create post with Markdown markup langauge
 - live preview while creating post
+- Firebase Cloud Firestore as database
 
 ### Tools
 

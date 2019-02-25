@@ -5,33 +5,33 @@
  * They are the only source of information for the store.
  */
 
-import { fetchPostsFromFirestore, addPostToFirestore } from "../data/firebase";
+import {
+  fetchPostsFromFirestore,
+  addPostToFirestore,
+  signInWithEmailAndPassword,
+  fetchSignedInUserData,
+  signOutUser
+} from "../data/firebase";
 
-const fetchinghError = {
-  occured: false,
-  message: ""
-};
+const postsFetched = posts => ({
+  type: "POSTS_FETCHED_SUCCESS",
+  posts
+});
 
-const postsFetched = (posts, error) => ({
-  type: "FETCH_POSTS",
-  posts,
-  error
+const postsFetchedError = fetchingError => ({
+  type: "POSTS_FETCHED_ERROR",
+  fetchingError
 });
 
 export const fetchPosts = () => (dispatch, getState) => {
   fetchPostsFromFirestore()
     .then(posts => {
-      dispatch(postsFetched(posts, fetchinghError));
+      dispatch(postsFetched(posts));
       dispatch(unwrapTags(posts));
       dispatch(unwrapDates(posts));
       dispatch(filterPosts(posts, getState().filters));
     })
-    .catch(error => {
-      let fetchingError = fetchinghError;
-      fetchingError.occured = true;
-      fetchingError.message = error.message;
-      return dispatch(postsFetched([], fetchingError));
-    });
+    .catch(error => dispatch(postsFetchedError(error)));
 };
 
 export const addPost = post => dispatch => {
@@ -73,3 +73,27 @@ export const resetFilters = filters => ({
   type: "RESET_FILTERS",
   filters
 });
+
+export const signedIn = (isSignedIn, errorMessage) => ({
+  type: "SIGNED_IN",
+  isSignedIn,
+  errorMessage
+});
+
+export const fetchedUserData = (displayName, email) => ({
+  type: "FETCHED_USER_DATA",
+  displayName,
+  email
+});
+
+export const signIn = (email, password) => dispatch =>
+  signInWithEmailAndPassword(email, password)
+    .then(() => dispatch(signedIn(true, "")))
+    .then(() => fetchSignedInUserData())
+    .then(data => dispatch(fetchedUserData(data.name, data.email)))
+    .catch(error => dispatch(signedIn(false, error.message)));
+
+export const signOut = () => dispatch =>
+  signOutUser()
+    .then(() => dispatch(signedIn(false, "")))
+    .then(() => dispatch(fetchedUserData("", "")));

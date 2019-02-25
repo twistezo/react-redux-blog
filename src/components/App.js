@@ -14,10 +14,7 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      error: {
-        occured: false,
-        message: ""
-      }
+      error: null
     };
   }
 
@@ -31,10 +28,7 @@ class App extends Component {
     const posts = this.props.posts;
     if (posts !== prevProps.posts) {
       this.setState({
-        error: {
-          occured: posts.error.occured,
-          message: posts.error.message
-        }
+        error: this.props.posts.fetchingError
       });
     }
   }
@@ -51,10 +45,17 @@ class App extends Component {
   };
 
   WaitContainer = () => {
+    const waitMessages = [
+      "Feeding artificial intelligence",
+      "Decorating unattractive UI",
+      "Refactoring dirty code",
+      "Writing fake news",
+      "Patching security vulnerabilities"
+    ];
     return (
       <div className="text-center pt-5">
         <div className="pb-2">
-          <h2>Downloading data...</h2>
+          <h2>{DataUtils.randomArrayItem(waitMessages) + `...`}</h2>
         </div>
       </div>
     );
@@ -101,9 +102,9 @@ class App extends Component {
   };
 
   render() {
-    if (this.props.posts.length !== 0 && !this.state.error.occured) {
+    if (this.props.posts.length !== 0 && this.state.error === null) {
       return <this.MainContainer />;
-    } else if (this.state.error.occured) {
+    } else if (this.state.error !== null) {
       return <this.ErrorContainer />;
     } else {
       return <this.WaitContainer />;
