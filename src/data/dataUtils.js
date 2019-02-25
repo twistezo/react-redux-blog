@@ -3,7 +3,7 @@ import showdown from "showdown";
 import firebase from "./firebase";
 import { firebaseFirestore } from "../data/firebase";
 import hljs from "highlight.js";
-import "../dracula.css";
+import "../styles/_dracula.scss";
 import { Post } from "../data/index";
 import DataGenerator from "./generator";
 
@@ -29,6 +29,9 @@ class DataUtils {
         });
       })
       .every(e => e);
+
+  static nextArrayItem = (array, currentIndex) =>
+    array[(currentIndex + 1) % array.length];
 
   static getEmailPrefix = email => email.slice(0, email.indexOf("@"));
 

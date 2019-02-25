@@ -11,10 +11,18 @@ import { PUBLIC_URL } from "../index";
 import DataUtils from "../data/dataUtils";
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    this.waitMessages = [
+      "Feeding artificial intelligence",
+      "Decorating unattractive UI",
+      "Refactoring dirty code",
+      "Writing fake news",
+      "Patching security vulnerabilities"
+    ];
     this.state = {
-      error: null
+      error: null,
+      waitMessage: DataUtils.randomArrayItem(this.waitMessages)
     };
   }
 
@@ -45,17 +53,25 @@ class App extends Component {
   };
 
   WaitContainer = () => {
-    const waitMessages = [
-      "Feeding artificial intelligence",
-      "Decorating unattractive UI",
-      "Refactoring dirty code",
-      "Writing fake news",
-      "Patching security vulnerabilities"
-    ];
+    const currentIndex = this.waitMessages.findIndex(
+      m => m === this.state.waitMessage
+    );
+    setTimeout(() => {
+      console.log("here");
+      this.setState({
+        waitMessage: DataUtils.nextArrayItem(this.waitMessages, currentIndex)
+      });
+    }, 1000);
+
     return (
-      <div className="text-center pt-5">
-        <div className="pb-2">
-          <h2>{DataUtils.randomArrayItem(waitMessages) + `...`}</h2>
+      <div className="wait-container">
+        <div className="container text-center h-100 d-flex flex-column justify-content-center">
+          <Row className="wait-text">
+            <Col>
+              <h2>{this.state.waitMessage + `.`}</h2>
+            </Col>
+          </Row>
+          <div className="box-loading" />
         </div>
       </div>
     );

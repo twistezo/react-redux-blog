@@ -6,7 +6,7 @@ import thunk from "redux-thunk";
 import rootReducer from "./reducers";
 import { AppContainer } from "./containers/AppContainer";
 import * as serviceWorker from "./serviceWorker";
-import "./index.scss";
+import "./styles/_index.scss";
 
 export const PUBLIC_URL = process.env.PUBLIC_URL;
 
