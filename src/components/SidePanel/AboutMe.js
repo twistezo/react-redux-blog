@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { Container } from "react-bootstrap";
+import React, { Component } from 'react'
+import { Container } from 'react-bootstrap'
 
 class AboutMe extends Component {
   render() {
@@ -7,8 +7,8 @@ class AboutMe extends Component {
       <Container>
         <h4>About Me</h4>
       </Container>
-    );
+    )
   }
 }
 
-export default AboutMe;
+export default AboutMe

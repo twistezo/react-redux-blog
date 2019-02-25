@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { Form, Col, Row, Button, Modal } from "react-bootstrap";
+import React, { Component } from 'react'
+import { Form, Col, Row, Button, Modal } from 'react-bootstrap'
 
 class SignInForm extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
       formData: {
-        email: "",
-        password: ""
+        email: '',
+        password: ''
       }
-    };
+    }
   }
 
   componentDidUpdate() {
@@ -17,59 +17,59 @@ class SignInForm extends Component {
   }
 
   handleSignIn = () => {
-    this.props.signIn(this.state.formData.email, this.state.formData.password);
-  };
+    this.props.signIn(this.state.formData.email, this.state.formData.password)
+  }
 
   handleHideSignInModal = () => {
-    this.props.onSignInFormHide();
-  };
+    this.props.onSignInFormHide()
+  }
 
   handleFormInputChange = e => {
-    const targetName = e.target.name;
-    const targetValue = e.target.value;
+    const targetName = e.target.name
+    const targetValue = e.target.value
     this.setState(() => ({
       formData: {
         ...this.state.formData,
         [targetName]: targetValue
       }
-    }));
-  };
+    }))
+  }
 
   render() {
     return (
       <Modal
         show={this.props.signInModalShow}
         onHide={this.props.onSignInFormHide}
-        size="sm"
-        aria-labelledby="contained-modal-title-vcenter"
+        size='sm'
+        aria-labelledby='contained-modal-title-vcenter'
         centered
       >
         <Modal.Header closeButton>
-          <Modal.Title id="contained-modal-title-vcenter">Sign in</Modal.Title>
+          <Modal.Title id='contained-modal-title-vcenter'>Sign in</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form className="pt-3">
+          <Form className='pt-3'>
             <Form.Group>
               <Form.Control
-                name="email"
+                name='email'
                 // value={this.state.formData.name}
-                type="text"
-                placeholder="Email"
+                type='text'
+                placeholder='Email'
                 required
                 onChange={this.handleFormInputChange}
               />
             </Form.Group>
             <Form.Group>
               <Form.Control
-                name="password"
+                name='password'
                 // value={this.state.formData.review}
-                type="password"
-                placeholder="Password"
+                type='password'
+                placeholder='Password'
                 required
                 onChange={this.handleFormInputChange}
               />
             </Form.Group>
-            <Row className="pt-3 text-center">
+            <Row className='pt-3 text-center'>
               <Col>
                 <Button onClick={this.handleHideSignInModal}>Back</Button>
               </Col>
@@ -80,8 +80,8 @@ class SignInForm extends Component {
           </Form>
         </Modal.Body>
       </Modal>
-    );
+    )
   }
 }
 
-export default SignInForm;
+export default SignInForm

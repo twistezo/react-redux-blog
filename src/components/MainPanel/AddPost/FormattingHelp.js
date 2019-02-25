@@ -1,10 +1,10 @@
-import React, { Component } from "react";
-import { Table } from "react-bootstrap";
+import React, { Component } from 'react'
+import { Table } from 'react-bootstrap'
 
 class FormattingHelp extends Component {
   render() {
     return (
-      <div className="pt-4">
+      <div className='pt-4'>
         <h4>Formatting options (only in Post body)</h4>
         <Table bordered>
           <thead>
@@ -67,24 +67,24 @@ class FormattingHelp extends Component {
               <td>![alt text](url = 30x30)</td>
               <td>
                 <img
-                  alt="Alt Text"
-                  src="https://avatars.dicebear.com/v2/identicon/test.svg"
-                  width="30"
-                  height="30"
+                  alt='Alt Text'
+                  src='https://avatars.dicebear.com/v2/identicon/test.svg'
+                  width='30'
+                  height='30'
                 />
               </td>
             </tr>
             <tr>
-              <td>{"<http://www.example.com>"}</td>
+              <td>{'<http://www.example.com>'}</td>
               <td>
-                <a href="http://www.example.com">http://www.example.com</a>
+                <a href='http://www.example.com'>http://www.example.com</a>
               </td>
             </tr>
           </tbody>
         </Table>
       </div>
-    );
+    )
   }
 }
 
-export default FormattingHelp;
+export default FormattingHelp

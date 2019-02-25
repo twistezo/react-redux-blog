@@ -1,23 +1,23 @@
-import React, { Component } from "react";
-import { Container } from "react-bootstrap";
-import PostCardHorizontal from "./PostCards/PostCardHorizontal";
-import PostCardVertical from "./PostCards/PostCardVertical";
+import React, { Component } from 'react'
+import { Container } from 'react-bootstrap'
+import PostCardHorizontal from './PostCards/PostCardHorizontal'
+import PostCardVertical from './PostCards/PostCardVertical'
 
 class MainBoard extends Component {
-  static headPostsNum = 2;
+  static headPostsNum = 2
 
   HeadPosts = () => {
     const headCards = this.props.filteredPosts
       .slice(0, MainBoard.headPostsNum)
-      .map(post => <PostCardVertical key={post.id} post={post} />);
-    return <div className="card-deck">{headCards}</div>;
-  };
+      .map(post => <PostCardVertical key={post.id} post={post} />)
+    return <div className='card-deck'>{headCards}</div>
+  }
 
   PostCards = () => {
     return this.props.filteredPosts
       .slice(MainBoard.headPostsNum)
-      .map(post => <PostCardHorizontal key={post.id} post={post} />);
-  };
+      .map(post => <PostCardHorizontal key={post.id} post={post} />)
+  }
 
   render() {
     return (
@@ -27,8 +27,8 @@ class MainBoard extends Component {
         <hr />
         <this.PostCards />
       </Container>
-    );
+    )
   }
 }
 
-export default MainBoard;
+export default MainBoard

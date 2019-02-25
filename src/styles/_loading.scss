@@ -8,7 +8,7 @@
   top: 0;
   bottom: 0;
   &:before {
-    content: "";
+    content: '';
     width: 50px;
     height: 5px;
     background: #000;
@@ -20,7 +20,7 @@
     animation: shadow 0.5s linear infinite;
   }
   &:after {
-    content: "";
+    content: '';
     width: 50px;
     height: 50px;
     background: #528078;

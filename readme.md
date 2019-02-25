@@ -1,7 +1,5 @@
 ## react-redux-blog
 
-<img src="https://static.wixstatic.com/media/007afd_76d5aec5161c45d58b2858d9f15b76c8~mv2.jpeg" height="200">
-
 ### Description
 
 Blog created with React, Redux.
@@ -14,7 +12,6 @@ Blog created with React, Redux.
 - Firebase Cloud Firestore as database
 
 ### Tools
-
 React, Redux, Bootstrap
 
 ### Requirements
