@@ -38,7 +38,7 @@ class Tags extends Component {
     return (
       <Container>
         <div>
-          <h4>Tags</h4>
+          <h3>Tags</h3>
           <span className='d-flex flex-wrap'>
             <this.Tags />
           </span>

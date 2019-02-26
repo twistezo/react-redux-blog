@@ -36,23 +36,21 @@ class PostsCard extends Component {
     const postURL = PUBLIC_URL + '/post/id-' + post.id
     const isSignedIn = this.props.isSignedIn
     const cardVersion = this.props.cardVersion
-    return (
-      <div className='card mb-3'>
-        {cardVersion === 'horizontal' ? (
-          <this.HorizontalCard
-            post={post}
-            postURL={postURL}
-            isSignedIn={isSignedIn}
-          />
-        ) : (
-          <this.VerticalCard
-            post={post}
-            postURL={postURL}
-            isSignedIn={isSignedIn}
-          />
-        )}
-      </div>
-    )
+    const card =
+      cardVersion === 'horizontal' ? (
+        <this.HorizontalCard
+          post={post}
+          postURL={postURL}
+          isSignedIn={isSignedIn}
+        />
+      ) : (
+        <this.VerticalCard
+          post={post}
+          postURL={postURL}
+          isSignedIn={isSignedIn}
+        />
+      )
+    return card
   }
 }
 

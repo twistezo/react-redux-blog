@@ -5,16 +5,18 @@
 $font-family-base: Lato;
 @import url('https://fonts.googleapis.com/css?family=Quicksand:200,300,400,700');
 $headings-font-family: Quicksand;
+
 $enable-grid-classes: false;
 
 $primary: #528078;
 $secondary: #eed75a;
 $success: #fec100;
 $danger: #703b3b;
-$info: #63e792;
+$info: $primary;
 $warning: #ffe869;
 $light: #fdfbf7;
-$dark: #555555;
+$dark: white;
+$black: #333;
 @import '../../node_modules/bootstrap/scss/bootstrap';
 @import '../../node_modules/bootstrap/scss/functions';
 @import '../../node_modules/bootstrap/scss/variables';
@@ -42,18 +44,32 @@ a,
   font-weight: inherit;
 }
 
-.fas,
-.far {
-  .card {
-    color: $primary;
+#about-me {
+  i {
+    font-size: 36px;
+    padding-right: 10px;
   }
-  nav button i {
-    color: $info;
+  .row {
+    margin-left: 0px;
+  }
+  .fa-facebook {
+    color: #3c599f;
+  }
+  .fa-linkedin {
+    color: #0085ae;
+  }
+  .fa-twitter {
+    color: #32ccfe;
+  }
+  .fa-github {
+    color: #070709;
   }
 }
 
-.fa-search {
-  color: $info;
+#post-card-vertical {
+  .card-img-top {
+    height: 100px;
+  }
 }
 
 button:hover i {
@@ -65,24 +81,24 @@ button:hover i {
   }
 }
 
+button,
 nav {
-  .navbar-brand {
-    font-family: Quicksand;
+  font-family: Quicksand;
+}
+
+nav {
+  box-shadow: 0 0.25px 5px rgba(0, 0, 0, 0.2);
+  .hello-user {
+    color: $black;
+  }
+  .fa-search {
+    color: $info;
+    position: relative;
+    right: 35px;
   }
   input {
-    color: $info !important;
+    color: $black !important;
     background-color: $dark !important;
     border-color: $info !important;
   }
-  input::placeholder {
-    color: gray !important;
-  }
-}
-
-.card-img-top {
-  height: 100px;
-}
-
-.hello-user {
-  color: $info;
 }

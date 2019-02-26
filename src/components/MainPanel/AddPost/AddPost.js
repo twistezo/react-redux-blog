@@ -101,7 +101,7 @@ class AddPost extends Component {
               type='text'
               placeholder='Post title'
               required
-              maxLength='30'
+              maxLength='50'
               onChange={this.handleInputChange}
             />
           </Form.Group>
@@ -128,7 +128,9 @@ class AddPost extends Component {
             />
           </Form.Group>
           <Form.Group className='d-flex justify-content-end'>
-            <Button onClick={this.handleAddPost}>Add</Button>
+            <Button variant='outline-primary' onClick={this.handleAddPost}>
+              Add
+            </Button>
           </Form.Group>
         </Form>
       </div>
@@ -145,7 +147,11 @@ class AddPost extends Component {
               <span>Formatting options:</span>
             </Col>
             <Col sm={2} className='d-flex justify-content-end'>
-              <Button className='ml-2' onClick={this.handleShowFormattingHelp}>
+              <Button
+                className='ml-2'
+                variant='outline-primary'
+                onClick={this.handleShowFormattingHelp}
+              >
                 {this.state.controllers.showFormattingHelp ? 'Hide' : 'Show'}
               </Button>
             </Col>
@@ -155,7 +161,11 @@ class AddPost extends Component {
               <span>Example post:</span>
             </Col>
             <Col sm={2} className='d-flex justify-content-end'>
-              <Button className='ml-2' onClick={this.handlePasteExample}>
+              <Button
+                className='ml-2'
+                variant='outline-primary'
+                onClick={this.handlePasteExample}
+              >
                 {this.state.controllers.shouldClearPastedExample
                   ? 'Clear'
                   : 'Paste'}

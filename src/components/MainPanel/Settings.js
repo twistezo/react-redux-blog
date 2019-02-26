@@ -22,7 +22,11 @@ class Settings extends Component {
               <span>Remove all posts:</span>
             </Col>
             <Col sm={2} className='d-flex justify-content-end'>
-              <Button className='ml-2' onClick={this.handleRemoveAllPosts}>
+              <Button
+                className='ml-2'
+                variant='outline-primary'
+                onClick={this.handleRemoveAllPosts}
+              >
                 Remove
               </Button>
             </Col>
@@ -32,7 +36,11 @@ class Settings extends Component {
               <span>Generate new random posts:</span>
             </Col>
             <Col sm={2} className='d-flex justify-content-end'>
-              <Button className='ml-2' onClick={this.handleRemoveAllPosts}>
+              <Button
+                className='ml-2'
+                variant='outline-primary'
+                onClick={this.handleRemoveAllPosts}
+              >
                 Generate
               </Button>
             </Col>
@@ -63,7 +71,12 @@ class Settings extends Component {
               />
             </Form.Group>
             <Form.Group className='d-flex justify-content-end'>
-              <Button onClick={this.handleUserDataChange}>Change</Button>
+              <Button
+                variant='outline-primary'
+                onClick={this.handleUserDataChange}
+              >
+                Change
+              </Button>
             </Form.Group>
           </Col>
         </Form>

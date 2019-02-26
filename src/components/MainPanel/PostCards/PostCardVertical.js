@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Col, Button, ButtonGroup } from 'react-bootstrap'
+import { Col, Card, Button, ButtonGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 class PostCardVertical extends Component {
@@ -7,7 +7,7 @@ class PostCardVertical extends Component {
     const post = this.props.post
     const postURL = this.props.postURL
     return (
-      <div>
+      <Card id='post-card-vertical' className='mb-3'>
         <Link to={postURL}>
           <img src={post.mainImage} className='card-img-top pt-3' alt='' />
         </Link>
@@ -53,7 +53,7 @@ class PostCardVertical extends Component {
             </Col>
           )}
         </div>
-      </div>
+      </Card>
     )
   }
 }

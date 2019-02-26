@@ -35,7 +35,7 @@ class Navbar extends Component {
   render() {
     const isSignedIn = this.props.isSignedIn
     return (
-      <BsNavbar bg='dark' variant='dark' className='sticky-top text-center'>
+      <BsNavbar bg='dark' variant='light' className='sticky-top text-center'>
         <Container>
           <div className='d-flex justify-content-between flex-fill align-items-center'>
             <Link to={PUBLIC_URL + '/'} onClick={this.handleLogoClick}>
@@ -47,7 +47,7 @@ class Navbar extends Component {
               <SearchFormContainer />
               {isSignedIn && (
                 <div className='d-flex'>
-                  <div className='hello-user d-flex align-self-center'>
+                  <div className='hello-user d-flex align-self-center ml-2'>
                     {'Hello, ' + this.props.displayName + '!'}
                   </div>
                   <Link className='ml-4' to={PUBLIC_URL + '/settings'}>

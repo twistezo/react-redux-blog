@@ -57,7 +57,7 @@ class Archives extends Component {
   render() {
     return (
       <Container>
-        <h4>Archive posts</h4>
+        <h3>Archive posts</h3>
         <this.Dates />
       </Container>
     )

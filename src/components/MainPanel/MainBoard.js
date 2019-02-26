@@ -34,7 +34,7 @@ class MainBoard extends Component {
   render() {
     return (
       <Container>
-        <h4 className='pb-3'>Latest posts</h4>
+        <h3 className='pb-3'>Latest posts</h3>
         <this.HeadPosts />
         <hr className='pb-2' />
         <this.PostCards />
