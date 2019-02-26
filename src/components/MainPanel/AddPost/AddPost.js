@@ -14,7 +14,8 @@ class AddPost extends Component {
       formInput: {
         title: '',
         shortDescription: '',
-        text: ''
+        text: '',
+        mainImageSrc: ''
       },
       parsedText: '',
       controllers: {
@@ -35,20 +36,21 @@ class AddPost extends Component {
   handlePasteExample = () => {
     const shouldClearPastedExample = !this.state.controllers
       .shouldClearPastedExample
-    const title = shouldClearPastedExample ? 'Example title' : ''
+    const generatedExample = DataUtils.generateExampleMarkdownPost()
+    const title = shouldClearPastedExample ? generatedExample.title : ''
     const shortDescription = shouldClearPastedExample
-      ? 'Example short description'
+      ? generatedExample.shortDescription
       : ''
-    const text = shouldClearPastedExample
-      ? DataUtils.generateExampleMarkdownText()
-      : ''
+    const text = shouldClearPastedExample ? generatedExample.text : ''
+    const mainImageSrc = generatedExample.randomImageSrc
 
     this.setState({
       ...this.state,
       formInput: {
         title,
         shortDescription,
-        text
+        text,
+        mainImageSrc
       },
       parsedText: text,
       controllers: {
@@ -79,20 +81,19 @@ class AddPost extends Component {
         this.state.formInput.title,
         this.state.formInput.shortDescription,
         this.state.parsedText,
-        'twistezo',
+        this.props.authDisplayName,
         new Date(),
         ['#rust', '#javascript', '#linux'],
-        'https://avatars.dicebear.com/v2/identicon/test.svg'
+        this.state.formInput.mainImageSrc
       )
     )
   }
 
   Form = () => {
     return (
-      <div className='pt-4'>
-        <h4>Create your post!</h4>
-        <hr />
-        <Form className='pt-2'>
+      <div className='pb-4'>
+        <h5 className='pb-2'>Let's write</h5>
+        <Form>
           <Form.Group>
             <Form.Control
               name='title'
@@ -126,7 +127,7 @@ class AddPost extends Component {
               onChange={this.handleInputChange}
             />
           </Form.Group>
-          <Form.Group>
+          <Form.Group className='d-flex justify-content-end'>
             <Button onClick={this.handleAddPost}>Add</Button>
           </Form.Group>
         </Form>
@@ -136,23 +137,30 @@ class AddPost extends Component {
 
   Helper = () => {
     return (
-      <div>
-        <h4>Need a little help?</h4>
-        <hr />
-        <Col>
-          <Row className='pt-2'>
-            <span>Formatting options:</span>
-            <Button className='ml-2' onClick={this.handleShowFormattingHelp}>
-              {this.state.controllers.showFormattingHelp ? 'Hide' : 'Show'}
-            </Button>
+      <div className='pb-4'>
+        <h5 className='pb-1'>Need a little help?</h5>
+        <Col className='pb-4'>
+          <Row className='pb-2 d-flex align-items-center'>
+            <Col sm={4} className='pl-0'>
+              <span>Formatting options:</span>
+            </Col>
+            <Col sm={2} className='d-flex justify-content-end'>
+              <Button className='ml-2' onClick={this.handleShowFormattingHelp}>
+                {this.state.controllers.showFormattingHelp ? 'Hide' : 'Show'}
+              </Button>
+            </Col>
           </Row>
-          <Row className='pt-2'>
-            <span>Example post:</span>
-            <Button className='ml-2' onClick={this.handlePasteExample}>
-              {this.state.controllers.shouldClearPastedExample
-                ? 'Clear'
-                : 'Paste'}
-            </Button>
+          <Row className='d-flex align-items-center'>
+            <Col sm={4} className='pl-0'>
+              <span>Example post:</span>
+            </Col>
+            <Col sm={2} className='d-flex justify-content-end'>
+              <Button className='ml-2' onClick={this.handlePasteExample}>
+                {this.state.controllers.shouldClearPastedExample
+                  ? 'Clear'
+                  : 'Paste'}
+              </Button>
+            </Col>
           </Row>
         </Col>
       </div>
@@ -162,6 +170,8 @@ class AddPost extends Component {
   render() {
     return (
       <Container>
+        <h4>Write new post!</h4>
+        <hr className='pb-3' />
         <this.Helper />
         {this.state.controllers.showFormattingHelp && <FormattingHelp />}
         <this.Form />

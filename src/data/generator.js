@@ -11,13 +11,14 @@ class DataGenerator {
 
   _generate = quantity => {
     const chance = new Chance()
+    const examplePost = DataUtils.generateExampleMarkdownPost()
     for (let i = 0; i < quantity; i++) {
       this._data.push(
         new Post(
           uuidv1(),
-          chance.sentence({ words: 6 }),
-          chance.paragraph({ sentences: 3 }),
-          DataUtils.generateExampleMarkdownText(),
+          examplePost.title,
+          examplePost.shortDescription,
+          examplePost.text,
           'twistezo',
           chance.date({
             string: false,

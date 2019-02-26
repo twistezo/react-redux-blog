@@ -5,7 +5,8 @@ import { resetFilters, filterPosts, signOut } from '../actions'
 const mapStateToProps = state => ({
   posts: state.posts.data,
   filters: state.filters,
-  auth: state.auth
+  displayName: state.auth.displayName,
+  isSignedIn: state.auth.isSignedIn
 })
 
 const mapDispatchToProps = { resetFilters, signOut, filterPosts }

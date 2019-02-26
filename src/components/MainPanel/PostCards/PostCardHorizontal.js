@@ -1,30 +1,29 @@
 import React, { Component } from 'react'
-import { Container } from 'react-bootstrap'
+import { Row, Col, Button, ButtonGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
-import { PUBLIC_URL } from '../../../index'
 
-class PostsCard extends Component {
+class PostsCardHorizontal extends Component {
   render() {
     const post = this.props.post
-    const postURL = PUBLIC_URL + '/post/id-' + post.id
+    const postURL = this.props.postURL
     return (
-      <Container className='mb-2'>
-        <div className='card mb-3'>
-          <div className='row no-gutters'>
-            <div className='col-md-3 d-flex flex-wrap align-items-center'>
-              <Link to={postURL}>
-                <img src={post.mainImage} className='card-img pl-3' alt='' />
-              </Link>
-            </div>
-            <div className='col-md-9'>
-              <div className='card-body'>
-                <Link to={postURL}>
-                  <h5 className='card-title'>{post.title}</h5>
-                </Link>
-                <p className='card-text'>
-                  {post.shortDescription.substring(0, 150) + '...'}
-                </p>
-                <span className='card-text'>
+      <div className='row no-gutters'>
+        <div className='col-md-3 d-flex flex-wrap align-items-center'>
+          <Link to={postURL}>
+            <img src={post.mainImage} className='card-img pl-3' alt='' />
+          </Link>
+        </div>
+        <div className='col-md-9'>
+          <div className='card-body'>
+            <Link to={postURL}>
+              <h5 className='card-title'>{post.title}</h5>
+            </Link>
+            <p className='card-text'>
+              {post.shortDescription.substring(0, 150) + '...'}
+            </p>
+            <span className='card-text'>
+              <Row>
+                <Col>
                   <p className='text-muted mb-0'>
                     {post.author +
                       ', ' +
@@ -41,14 +40,33 @@ class PostsCard extends Component {
                       </span>
                     ))}
                   </p>
-                </span>
-              </div>
-            </div>
+                </Col>
+                {this.props.isSignedIn && (
+                  <Col className='align-self-center'>
+                    <ButtonGroup className='float-right btn-group-sm'>
+                      <Button
+                        variant='outline-primary'
+                        onClick={this.props.onEditPost}
+                      >
+                        Edit &nbsp; <i className='fas fa-edit' />
+                      </Button>
+                      <Button
+                        variant='outline-primary'
+                        className='ml-3'
+                        onClick={this.props.onRemovePost}
+                      >
+                        Remove &nbsp; <i className='fas fa-trash-alt' />
+                      </Button>
+                    </ButtonGroup>
+                  </Col>
+                )}
+              </Row>
+            </span>
           </div>
         </div>
-      </Container>
+      </div>
     )
   }
 }
 
-export default PostsCard
+export default PostsCardHorizontal

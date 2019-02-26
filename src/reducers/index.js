@@ -75,7 +75,14 @@ const filters = (state = filtersShape, action) => {
   }
 }
 
-const auth = (state = {}, action) => {
+const authShape = {
+  displayName: '',
+  email: '',
+  isSignedIn: false,
+  errorMessage: ''
+}
+
+const auth = (state = authShape, action) => {
   switch (action.type) {
     case 'SIGNED_IN':
       return {

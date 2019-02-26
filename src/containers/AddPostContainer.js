@@ -4,7 +4,8 @@ import { addPost, filterPosts, unwrapTags, unwrapDates } from '../actions'
 
 const mapStateToProps = state => ({
   posts: state.posts,
-  filters: state.filters
+  filters: state.filters,
+  authDisplayName: state.auth.displayName
 })
 
 const mapDispatchToProps = { addPost, filterPosts, unwrapTags, unwrapDates }

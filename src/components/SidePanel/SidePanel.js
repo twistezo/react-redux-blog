@@ -8,13 +8,13 @@ class SidePanel extends Component {
   render() {
     return (
       <Container>
-        <Row className='pb-2'>
+        <Row className='pb-5'>
           <AboutMe />
         </Row>
-        <Row className='pb-2'>
+        <Row className='pb-5'>
           <TagsContainer />
         </Row>
-        <Row className='pb-2'>
+        <Row className='pb-5'>
           <ArchivesContainer />
         </Row>
       </Container>

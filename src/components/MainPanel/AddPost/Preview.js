@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import DataUtils from '../../../data/dataUtils'
+import { Col } from 'react-bootstrap'
 
 class Preview extends Component {
   componentDidMount() {
@@ -12,9 +13,11 @@ class Preview extends Component {
 
   render() {
     return (
-      <div className='pt-3'>
+      <div className='pb-4'>
         <h4>Live preview</h4>
-        <hr />
+        <Col sm={3} className='pl-0'>
+          <hr />
+        </Col>
         <h1>{this.props.title}</h1>
         <p>{this.props.shortDescription}</p>
         <div

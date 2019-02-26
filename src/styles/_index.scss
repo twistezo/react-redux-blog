@@ -25,15 +25,15 @@ $dark: #555555;
 @import '../../node_modules/bootstrap/scss/code';
 @import '../../node_modules/bootstrap/scss/grid';
 
+html {
+  overflow-y: scroll;
+}
+
 .wait-container {
   height: 100vh;
   .wait-text {
     padding-bottom: 150px;
   }
-}
-
-html {
-  overflow-y: scroll;
 }
 
 a,
@@ -44,7 +44,39 @@ a,
 
 .fas,
 .far {
+  .card {
+    color: $primary;
+  }
+  nav button i {
+    color: $info;
+  }
+}
+
+.fa-search {
   color: $info;
+}
+
+button:hover i {
+  .card {
+    color: white;
+  }
+  nav {
+    color: black;
+  }
+}
+
+nav {
+  .navbar-brand {
+    font-family: Quicksand;
+  }
+  input {
+    color: $info !important;
+    background-color: $dark !important;
+    border-color: $info !important;
+  }
+  input::placeholder {
+    color: gray !important;
+  }
 }
 
 .card-img-top {

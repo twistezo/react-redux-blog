@@ -35,50 +35,59 @@ class DataUtils {
 
   static getEmailPrefix = email => email.slice(0, email.indexOf('@'))
 
-  static generateExampleMarkdownText = () => {
+  static generateExampleMarkdownPost = () => {
     const chance = new Chance()
     const randomSentence = words => chance.sentence({ words })
     const randomParagraph = sentences =>
       chance.paragraph({
         sentences
       })
-    const word = length => chance.word({ length })
 
-    return `### ${randomSentence(6)}
-        \n ${randomParagraph(10)}
-        \n![Alt Text](https://avatars.dicebear.com/v2/identicon/${word(
-          15
-        )}.svg =200x200)
-        \nPhoto: *${randomSentence(6)}*
-        \nVisit: <http://www.example.com>
-        \n### ${randomSentence(6)}
-        \n${randomParagraph(6)}
-        \n${word()} ${word()}:
-        \n* ${word()}
-        \n* ${word()}
-        \n* ${word()}
-        \n### ${randomSentence(6)}
-        \nSome code:
-        \n
-        \`\`\`
-        function resolveAfter2Seconds() {
-          return new Promise(resolve => {
-            setTimeout(() => {
-              resolve('resolved');
-            }, 2000);
-          });
-        }
-        
-        async function asyncCall() {
-          console.log('calling');
-          var result = await resolveAfter2Seconds();
-          console.log(result);
-          // expected output: 'resolved'
-        }
-        
-        asyncCall();
-        \`\`\`
-        `
+    const word = length => chance.word({ length })
+    const randomImageSrc = `https://avatars.dicebear.com/v2/identicon/${word(
+      15
+    )}.svg`
+    const title = randomSentence(6)
+    const shortDescription = randomParagraph(3)
+    const text = `### ${randomSentence(6)}
+    \n ${randomParagraph(10)}
+    \n![Alt Text](${randomImageSrc} =200x200)
+    \nPhoto: *${randomSentence(6)}*
+    \nVisit: <http://www.example.com>
+    \n### ${randomSentence(6)}
+    \n${randomParagraph(6)}
+    \n${word()} ${word()}:
+    \n* ${word()}
+    \n* ${word()}
+    \n* ${word()}
+    \n### ${randomSentence(6)}
+    \nSome code:
+    \n
+    \`\`\`
+    function resolveAfter2Seconds() {
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve('resolved');
+        }, 2000);
+      });
+    }
+    
+    async function asyncCall() {
+      console.log('calling');
+      var result = await resolveAfter2Seconds();
+      console.log(result);
+      // expected output: 'resolved'
+    }
+    
+    asyncCall();
+    \`\`\`
+    `
+    return {
+      title,
+      shortDescription,
+      text,
+      randomImageSrc
+    }
   }
 
   static convertMarkdownToHtml = markdownString =>

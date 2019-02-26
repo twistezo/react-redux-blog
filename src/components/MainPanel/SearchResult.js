@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import PostCardHorizontal from './PostCards/PostCardHorizontal'
 import { Container } from 'react-bootstrap'
+import { PostCardContainer } from '../../containers/PostCardContainer'
 
 class SearchResult extends Component {
   PostCards = () => {
     return this.props.filteredPosts.map(post => (
-      <PostCardHorizontal key={post.id} post={post} />
+      <PostCardContainer key={post.id} cardVersion={'horizontal'} post={post} />
     ))
   }
 

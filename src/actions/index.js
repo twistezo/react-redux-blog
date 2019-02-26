@@ -8,12 +8,13 @@
 import {
   fetchPostsFromFirestore,
   addPostToFirestore,
+  removePostByIdFromFirestore,
   signInWithEmailAndPassword,
   fetchSignedInUserData,
   signOutUser
 } from '../data/firebase'
 
-const postsFetched = posts => ({
+const postsFetchedSuccess = posts => ({
   type: 'POSTS_FETCHED_SUCCESS',
   posts
 })
@@ -26,7 +27,7 @@ const postsFetchedError = fetchingError => ({
 export const fetchPosts = () => (dispatch, getState) => {
   fetchPostsFromFirestore()
     .then(posts => {
-      dispatch(postsFetched(posts))
+      dispatch(postsFetchedSuccess(posts))
       dispatch(unwrapTags(posts))
       dispatch(unwrapDates(posts))
       dispatch(filterPosts(posts, getState().filters))
@@ -36,6 +37,12 @@ export const fetchPosts = () => (dispatch, getState) => {
 
 export const addPost = post => dispatch => {
   addPostToFirestore(post).then(() => dispatch(fetchPosts()))
+}
+
+export const removePost = postId => dispatch => {
+  removePostByIdFromFirestore(postId)
+    .then(() => dispatch(fetchPosts()))
+    .catch(err => console.log(err))
 }
 
 export const filterPosts = (posts, filters) => ({

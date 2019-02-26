@@ -21,7 +21,8 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "showdown": "^1.9.0",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "react-social-icons": "^4.1.0"
   },
   "scripts": {
     "predeploy": "npm run build",

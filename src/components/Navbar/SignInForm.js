@@ -12,12 +12,9 @@ class SignInForm extends Component {
     }
   }
 
-  componentDidUpdate() {
-    // console.log(this.state);
-  }
-
   handleSignIn = () => {
     this.props.signIn(this.state.formData.email, this.state.formData.password)
+    this.props.onSignInFormHide()
   }
 
   handleHideSignInModal = () => {

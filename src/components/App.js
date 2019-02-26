@@ -7,6 +7,7 @@ import { SearchResultContainer } from '../containers/SearchResultContainer'
 import { MainBoardContainer } from '../containers/MainBoardContainer'
 import { PostContainer } from '../containers/PostContainer'
 import { AddPostContainer } from '../containers/AddPostContainer'
+import { SettingsContainer } from '../containers/SettingsContainer'
 import { PUBLIC_URL } from '../index'
 import DataUtils from '../data/dataUtils'
 
@@ -32,7 +33,7 @@ class App extends Component {
   }
 
   componentDidUpdate(prevProps) {
-    // console.log(window.store.getState());
+    // console.log(window.store.getState())
     const posts = this.props.posts
     if (posts !== prevProps.posts) {
       this.setState({
@@ -57,7 +58,6 @@ class App extends Component {
       m => m === this.state.waitMessage
     )
     setTimeout(() => {
-      console.log('here')
       this.setState({
         waitMessage: DataUtils.nextArrayItem(this.waitMessages, currentIndex)
       })
@@ -78,6 +78,7 @@ class App extends Component {
   }
 
   MainContainer = () => {
+    const isSignedIn = this.props.isSignedIn
     return (
       <Router>
         <div>
@@ -104,10 +105,18 @@ class App extends Component {
                       <PostContainer routeParamId={route.match.params.id} />
                     )}
                   />
-                  <Route
-                    path={PUBLIC_URL + '/addpost'}
-                    component={AddPostContainer}
-                  />
+                  {isSignedIn && (
+                    <Route
+                      path={PUBLIC_URL + '/addpost'}
+                      component={AddPostContainer}
+                    />
+                  )}
+                  {isSignedIn && (
+                    <Route
+                      path={PUBLIC_URL + '/settings'}
+                      component={SettingsContainer}
+                    />
+                  )}
                 </Switch>
               </Col>
             </Row>

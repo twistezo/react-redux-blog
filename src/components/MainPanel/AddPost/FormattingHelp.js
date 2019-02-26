@@ -4,8 +4,8 @@ import { Table } from 'react-bootstrap'
 class FormattingHelp extends Component {
   render() {
     return (
-      <div className='pt-4'>
-        <h4>Formatting options (only in Post body)</h4>
+      <div className='pb-4'>
+        <h5 className='pb-2 '>Formatting options (only in Post body)</h5>
         <Table bordered>
           <thead>
             <tr>

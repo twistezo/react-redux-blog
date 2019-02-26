@@ -32,9 +32,19 @@ export const fetchPostsFromFirestore = () =>
 export const addPostToFirestore = post =>
   firebaseFirestore
     .collection('posts')
-    .add(DataUtils.jsPostObjToFirestoreObj(post))
+    .doc(post.id)
+    .set(DataUtils.jsPostObjToFirestoreObj(post))
     .catch(
       error => new Error('Errow while adding post. Error message: ', error)
+    )
+
+export const removePostByIdFromFirestore = postId =>
+  firebaseFirestore
+    .collection('posts')
+    .doc(postId)
+    .delete()
+    .catch(
+      error => new Error('Errow while removing post. Error message: ', error)
     )
 
 export const signInWithEmailAndPassword = (email, password) =>

@@ -15,7 +15,7 @@ class SearchForm extends Component {
 
   render() {
     return (
-      <Form inline>
+      <Form inline className='pr-4'>
         <Link to={PUBLIC_URL + '/search'}>
           <FormControl
             className='mr-sm-2'

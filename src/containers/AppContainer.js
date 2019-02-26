@@ -4,7 +4,8 @@ import App from '../components/App'
 
 const mapStateToProps = state => ({
   posts: state.posts,
-  filters: state.filters
+  filters: state.filters,
+  isSignedIn: state.auth.isSignedIn
 })
 
 const mapDispatchToProps = { fetchPosts, filterPosts, unwrapTags, unwrapDates }
