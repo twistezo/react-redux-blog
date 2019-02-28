@@ -23,7 +23,7 @@ class Preview extends Component {
         <div
           className='content pt-3'
           dangerouslySetInnerHTML={{
-            __html: DataUtils.convertMarkdownToHtml(this.props.parsedText)
+            __html: DataUtils.convertMarkdownToHtml(this.props.text)
           }}
         />
       </div>

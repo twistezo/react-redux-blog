@@ -5,7 +5,7 @@ import PostCardVertical from './PostCardVertical'
 
 class PostsCard extends Component {
   handleEditPost = () => {
-    console.log('handleEditPost')
+    this.props.editedPostId(this.props.post.id)
   }
   handleRemovePost = () => {
     this.props.removePost(this.props.post.id)

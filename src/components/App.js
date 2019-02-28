@@ -108,7 +108,13 @@ class App extends Component {
                   {isSignedIn && (
                     <Route
                       path={PUBLIC_URL + '/addpost'}
-                      component={AddPostContainer}
+                      component={() => <AddPostContainer variant={'add'} />}
+                    />
+                  )}
+                  {isSignedIn && (
+                    <Route
+                      path={PUBLIC_URL + '/editpost'}
+                      component={() => <AddPostContainer variant={'edit'} />}
                     />
                   )}
                   {isSignedIn && (

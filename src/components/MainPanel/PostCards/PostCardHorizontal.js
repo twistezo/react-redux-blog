@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Row, Card, Col, Button, ButtonGroup } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
+import { PUBLIC_URL } from '../../../index'
 
 class PostsCardHorizontal extends Component {
   render() {
@@ -45,12 +46,14 @@ class PostsCardHorizontal extends Component {
                   {this.props.isSignedIn && (
                     <Col className='align-self-center'>
                       <ButtonGroup className='float-right btn-group-sm'>
-                        <Button
-                          variant='outline-primary'
-                          onClick={this.props.onEditPost}
-                        >
-                          Edit &nbsp; <i className='fas fa-edit' />
-                        </Button>
+                        <Link to={PUBLIC_URL + '/editpost'}>
+                          <Button
+                            variant='outline-primary'
+                            onClick={this.props.onEditPost}
+                          >
+                            Edit &nbsp; <i className='fas fa-edit' />
+                          </Button>
+                        </Link>
                         <Button
                           variant='outline-primary'
                           className='ml-3'

@@ -1,10 +1,3 @@
-/**
- * Action creators
- *
- * Actions are payloads of information that send data from your application to your store.
- * They are the only source of information for the store.
- */
-
 import {
   fetchPostsFromFirestore,
   addPostToFirestore,
@@ -44,6 +37,11 @@ export const removePost = postId => dispatch => {
     .then(() => dispatch(fetchPosts()))
     .catch(err => console.log(err))
 }
+
+export const editedPostId = postId => ({
+  type: 'EDITED_POST_ID',
+  postId
+})
 
 export const filterPosts = (posts, filters) => ({
   type: 'FILTER_POSTS',
