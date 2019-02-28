@@ -16,7 +16,7 @@ class AddPost extends Component {
     const sourcePost = this.props.posts.data.find(
       post => post._id === editedPostId
     )
-    if (sourcePost !== null && sourcePost !== undefined)
+    if (this.props.variant === 'edit' && sourcePost !== undefined)
       this.setState({
         sourcePost
       })
