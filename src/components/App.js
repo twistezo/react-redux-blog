@@ -108,6 +108,7 @@ class App extends Component {
                     component={route => (
                       <Post
                         posts={this.props.posts.data}
+                        variant={'final'}
                         routeParamId={route.match.params.id}
                       />
                     )}

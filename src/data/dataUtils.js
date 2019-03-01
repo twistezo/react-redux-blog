@@ -75,7 +75,6 @@ class DataUtils {
     \n ${randomParagraph(10)}
     \n![Alt Text](${randomImageSrc} =200x200)
     \nPhoto: *${randomSentence(6)}*
-    \nVisit: <http://www.example.com>
     \n### ${randomSentence(6)}
     \n${randomParagraph(6)}
     \n${word()} ${word()}:
@@ -103,6 +102,7 @@ class DataUtils {
     
     asyncCall();
     \`\`\`
+    \nVisit: <http://www.example.com>
     `
     const tags = ['#rust', '#java', '#scss']
     return {

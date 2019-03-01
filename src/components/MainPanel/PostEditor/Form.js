@@ -2,10 +2,10 @@ import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Container, Form, Button } from 'react-bootstrap'
 import uuidv1 from 'uuid/v1'
-import { Post } from '../../../data/index'
-import Preview from './Preview'
 import { PUBLIC_URL } from '../../../index'
 import DataUtils from '../../../data/dataUtils'
+import Post from '../Post'
+import { Post as PostObject } from '../../../data/index'
 
 class Editor extends Component {
   constructor(props) {
@@ -185,11 +185,20 @@ class Editor extends Component {
             </Form.Group>
           </Form>
         </div>
-        <Preview
-          title={this.state.formData.title}
-          shortDescription={this.state.formData.shortDescription}
-          text={this.state.formData.text}
-          tags={this.state.formData.tags}
+        <Post
+          variant={'preview'}
+          tempPost={
+            new PostObject(
+              null,
+              this.state.formData.title,
+              this.state.formData.shortDescription,
+              this.state.formData.text,
+              this.props.authDisplayName,
+              new Date(),
+              DataUtils.convertSentenceToTagsArray(this.state.formData.tags),
+              null
+            )
+          }
         />
       </Container>
     )
