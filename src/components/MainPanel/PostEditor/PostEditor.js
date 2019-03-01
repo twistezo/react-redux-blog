@@ -16,10 +16,11 @@ class AddPost extends Component {
     const sourcePost = this.props.posts.data.find(
       post => post._id === editedPostId
     )
-    if (this.props.variant === 'edit' && sourcePost !== undefined)
+    if (this.props.variant === 'edit' && sourcePost !== undefined) {
       this.setState({
         sourcePost
       })
+    }
   }
 
   handleAddPost = editedPost => {
@@ -37,7 +38,10 @@ class AddPost extends Component {
           {this.props.variant === 'add' ? 'Write new post!' : 'Edit your post.'}
         </h4>
         <hr className='pb-3' />
-        <Helper onPasteExample={this.handlePasteExample} />
+        <Helper
+          variant={this.props.variant}
+          onPasteExample={this.handlePasteExample}
+        />
         <Form
           authDisplayName={this.props.authDisplayName}
           sourcePost={this.state.sourcePost}

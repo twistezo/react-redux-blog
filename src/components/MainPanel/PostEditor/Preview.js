@@ -26,6 +26,11 @@ class Preview extends Component {
             __html: DataUtils.convertMarkdownToHtml(this.props.text)
           }}
         />
+        <div>
+          {DataUtils.convertSentenceToTagsArray(this.props.tags).map(tag => (
+            <span key={tag}>{tag + ' '}</span>
+          ))}
+        </div>
       </div>
     )
   }

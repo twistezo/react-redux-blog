@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { Container, Button, Col, Row } from 'react-bootstrap'
 import FormattingHelp from './FormattingHelp'
 import DataUtils from '../../../data/dataUtils'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 class Helper extends Component {
   constructor(props) {
@@ -32,17 +33,21 @@ class Helper extends Component {
       ? generatedExample.shortDescription
       : ''
     const text = shouldClearPastedExample ? generatedExample.text : ''
-    const mainImage = generatedExample.randomImageSrc
+    const mainImage = shouldClearPastedExample
+      ? generatedExample.randomImageSrc
+      : ''
+    const tags = shouldClearPastedExample ? generatedExample.tags : []
 
+    this.setState({
+      ...this.state,
+      shouldClearPastedExample
+    })
     this.props.onPasteExample({
       title,
       shortDescription,
       text,
-      mainImage
-    })
-    this.setState({
-      ...this.state,
-      shouldClearPastedExample
+      mainImage,
+      tags
     })
   }
 
@@ -65,20 +70,24 @@ class Helper extends Component {
               </Button>
             </Col>
           </Row>
-          <Row className='d-flex align-items-center'>
-            <Col sm={4} className='pl-0'>
-              <span>Example post:</span>
-            </Col>
-            <Col sm={2} className='d-flex justify-content-end'>
-              <Button
-                className='ml-2'
-                variant='outline-primary'
-                onClick={this.handlePasteExample}
-              >
-                {this.state.shouldClearPastedExample ? 'Clear' : 'Paste'}
-              </Button>
-            </Col>
-          </Row>
+          {this.props.variant === 'add' ? (
+            <Row className='d-flex align-items-center'>
+              <Col sm={4} className='pl-0'>
+                <span>Example post:</span>
+              </Col>
+              <Col sm={2} className='d-flex justify-content-end'>
+                <Button
+                  className='ml-2'
+                  variant='outline-primary'
+                  onClick={this.handlePasteExample}
+                >
+                  {this.state.shouldClearPastedExample ? 'Clear' : 'Paste'}
+                </Button>
+              </Col>
+            </Row>
+          ) : (
+            ''
+          )}
         </Col>
       </div>
     )
@@ -88,7 +97,17 @@ class Helper extends Component {
     return (
       <Container>
         <this.Helper />
-        {this.state.showFormattingHelp && <FormattingHelp />}
+        {this.state.showFormattingHelp && (
+          <ReactCSSTransitionGroup
+            transitionName='search-result'
+            transitionAppear={true}
+            transitionAppearTimeout={750}
+            transitionEnter={false}
+            transitionLeave={false}
+          >
+            <FormattingHelp />
+          </ReactCSSTransitionGroup>
+        )}
       </Container>
     )
   }

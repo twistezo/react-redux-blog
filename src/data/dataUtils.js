@@ -35,6 +35,28 @@ class DataUtils {
 
   static getEmailPrefix = email => email.slice(0, email.indexOf('@'))
 
+  /**
+   * Convert sentence with words to array of tags.
+   * Ex. `java rust scss` to `['#java', '#rust', '#scss']`
+   * @param {string} words Sentence of tags.
+   * @return {array} Array of hashtags.
+   */
+  static convertSentenceToTagsArray = words =>
+    words !== null && words !== undefined && words !== ''
+      ? words.split(' ').map(word => '#' + word)
+      : []
+
+  /**
+   * Convert array of tags to sentence with words.
+   * Ex. `['#java', '#rust', '#scss']` to `java rust scss`
+   * @param {array} tagsArray Array of hashtags.
+   * @return {string} Sentence of tags.
+   */
+  static convertTagsArrayToSentence = tagsArray => {
+    const joined = tagsArray.map(tag => tag.slice(1)).join(' ')
+    return joined
+  }
+
   static generateExampleMarkdownPost = () => {
     const chance = new Chance()
     const randomSentence = words => chance.sentence({ words })
@@ -82,11 +104,13 @@ class DataUtils {
     asyncCall();
     \`\`\`
     `
+    const tags = ['#rust', '#java', '#scss']
     return {
       title,
       shortDescription,
       text,
-      randomImageSrc
+      randomImageSrc,
+      tags
     }
   }
 

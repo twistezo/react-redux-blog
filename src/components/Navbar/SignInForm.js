@@ -43,10 +43,10 @@ class SignInForm extends Component {
     this.props.onSignInFormHide()
   }
 
-  handleFormInputChange = e => {
-    const targetName = e.target.name
-    const targetValue = e.target.value
-    const isFieldValid = e.target.checkValidity() === true
+  handleFormInputChange = event => {
+    const targetName = event.target.name
+    const targetValue = event.target.value
+    const isFieldValid = event.target.checkValidity() === true
     let formValidation = { ...this.state.formValidation }
     formValidation[targetName] = isFieldValid
 
