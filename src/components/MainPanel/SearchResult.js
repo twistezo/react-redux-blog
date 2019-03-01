@@ -1,11 +1,25 @@
 import React, { Component } from 'react'
 import { Container } from 'react-bootstrap'
 import { PostCardContainer } from '../../containers/PostCardContainer'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 class SearchResult extends Component {
   PostCards = () => {
     return this.props.filteredPosts.map(post => (
-      <PostCardContainer key={post.id} cardVersion={'horizontal'} post={post} />
+      <ReactCSSTransitionGroup
+        transitionName='search-result'
+        transitionAppear={true}
+        transitionAppearTimeout={750}
+        transitionEnter={false}
+        transitionLeave={false}
+        key={post.id}
+      >
+        <PostCardContainer
+          key={post.id}
+          cardVersion={'horizontal'}
+          post={post}
+        />
+      </ReactCSSTransitionGroup>
     ))
   }
 

@@ -55,14 +55,14 @@ class Navbar extends Component {
                   <div className='hello-user d-flex align-self-center ml-2'>
                     {'Hello, ' + this.props.displayName + '!'}
                   </div>
-                  <Link className='ml-4' to={PUBLIC_URL + '/settings'}>
-                    <Button variant='outline-info'>
-                      <i className='fas fa-cogs' />
-                    </Button>
-                  </Link>
-                  <Link className='ml-2' to={PUBLIC_URL + '/addpost'}>
+                  <Link className='ml-4' to={PUBLIC_URL + '/addpost'}>
                     <Button variant='outline-info'>
                       Add Post&nbsp; <i className='fas fa-pen-alt' />
+                    </Button>
+                  </Link>
+                  <Link className='ml-2' to={PUBLIC_URL + '/settings'}>
+                    <Button variant='outline-info'>
+                      <i className='fas fa-cogs' />
                     </Button>
                   </Link>
                 </div>
