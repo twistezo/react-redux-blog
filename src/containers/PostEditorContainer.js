@@ -1,6 +1,7 @@
 import { connect } from 'react-redux'
-import AddPost from '../components/MainPanel/AddPost/AddPost'
-import { addPost, filterPosts, unwrapTags, unwrapDates } from '../actions'
+import PostEditor from '../components/MainPanel/PostEditor/PostEditor'
+import { addPost } from '../actions/posts'
+import { filterPosts, unwrapTags, unwrapDates } from '../actions/filters'
 
 const mapStateToProps = state => ({
   posts: state.posts,
@@ -10,7 +11,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = { addPost, filterPosts, unwrapTags, unwrapDates }
 
-export const AddPostContainer = connect(
+export const PostEditorContainer = connect(
   mapStateToProps,
   mapDispatchToProps
-)(AddPost)
+)(PostEditor)

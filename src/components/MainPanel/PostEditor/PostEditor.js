@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container } from 'react-bootstrap'
-import PostEditor from './PostEditor'
+import Form from './Form'
 import Helper from './Helper'
 
 class AddPost extends Component {
@@ -38,7 +38,7 @@ class AddPost extends Component {
         </h4>
         <hr className='pb-3' />
         <Helper onPasteExample={this.handlePasteExample} />
-        <PostEditor
+        <Form
           authDisplayName={this.props.authDisplayName}
           sourcePost={this.state.sourcePost}
           variant={this.props.variant}

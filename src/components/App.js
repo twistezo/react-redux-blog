@@ -2,11 +2,11 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Row, Col, Container } from 'react-bootstrap'
 import { NavbarContainer } from '../containers/NavbarContainer'
-import SidePanel from './SidePanel/SidePanel'
-import { SearchResultContainer } from '../containers/SearchResultContainer'
-import { MainBoardContainer } from '../containers/MainBoardContainer'
-import { PostContainer } from '../containers/PostContainer'
-import { AddPostContainer } from '../containers/AddPostContainer'
+import { SidePanelContainer } from '../containers/SidePanelContainer'
+import SearchResult from '../components/MainPanel/SearchResult'
+import MainBoard from '../components/MainPanel/MainBoard'
+import Post from '../components/MainPanel/Post'
+import { PostEditorContainer } from '../containers/PostEditorContainer'
 import { SettingsContainer } from '../containers/SettingsContainer'
 import { PUBLIC_URL } from '../index'
 import DataUtils from '../data/dataUtils'
@@ -86,35 +86,42 @@ class App extends Component {
           <Container>
             <Row className='pt-5'>
               <Col sm={3}>
-                <SidePanel />
+                <SidePanelContainer />
               </Col>
               <Col sm={9}>
                 <Switch>
                   <Route
                     exact
                     path={PUBLIC_URL + '/'}
-                    component={MainBoardContainer}
+                    component={() => (
+                      <MainBoard filteredPosts={this.props.filteredPosts} />
+                    )}
                   />
                   <Route
                     path={PUBLIC_URL + '/search'}
-                    component={SearchResultContainer}
+                    component={() => (
+                      <SearchResult filteredPosts={this.props.filteredPosts} />
+                    )}
                   />
                   <Route
                     path={PUBLIC_URL + '/post/id-:id'}
                     component={route => (
-                      <PostContainer routeParamId={route.match.params.id} />
+                      <Post
+                        posts={this.props.posts.data}
+                        routeParamId={route.match.params.id}
+                      />
                     )}
                   />
                   {isSignedIn && (
                     <Route
                       path={PUBLIC_URL + '/addpost'}
-                      component={() => <AddPostContainer variant={'add'} />}
+                      component={() => <PostEditorContainer variant={'add'} />}
                     />
                   )}
                   {isSignedIn && (
                     <Route
                       path={PUBLIC_URL + '/editpost'}
-                      component={() => <AddPostContainer variant={'edit'} />}
+                      component={() => <PostEditorContainer variant={'edit'} />}
                     />
                   )}
                   {isSignedIn && (

@@ -1,14 +1,14 @@
 import { connect } from 'react-redux'
-import { fetchPosts, filterPosts, unwrapTags, unwrapDates } from '../actions'
+import { fetchPosts } from '../actions/posts'
 import App from '../components/App'
 
 const mapStateToProps = state => ({
   posts: state.posts,
-  filters: state.filters,
+  filteredPosts: state.filteredPosts,
   isSignedIn: state.auth.isSignedIn
 })
 
-const mapDispatchToProps = { fetchPosts, filterPosts, unwrapTags, unwrapDates }
+const mapDispatchToProps = { fetchPosts }
 
 export const AppContainer = connect(
   mapStateToProps,

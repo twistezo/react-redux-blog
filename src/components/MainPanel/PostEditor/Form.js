@@ -6,7 +6,7 @@ import { Post } from '../../../data/index'
 import Preview from './Preview'
 import { PUBLIC_URL } from '../../../index'
 
-class PostEditor extends Component {
+class Editor extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -99,7 +99,7 @@ class PostEditor extends Component {
               />
             </Form.Group>
             <Form.Group className='d-flex justify-content-end'>
-              <Link className='ml-2' to={PUBLIC_URL}>
+              <Link to={PUBLIC_URL}>
                 <Button
                   variant='outline-primary'
                   onClick={this.handleFinishEdit}
@@ -120,4 +120,4 @@ class PostEditor extends Component {
   }
 }
 
-export default PostEditor
+export default Editor

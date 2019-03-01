@@ -11,27 +11,19 @@ class Post extends Component {
     DataUtils.updateCodeSyntaxHighlighting()
   }
 
-  PostContainer = () => {
+  render() {
     const post = this.props.posts.find(
       post => post.id === this.props.routeParamId
     )
     const text = DataUtils.convertMarkdownToHtml(post.text)
     return (
-      <div>
+      <Container>
         <h1>{post.title}</h1>
         <p>{post.shortDescription}</p>
         <div
           className='content pt-3'
           dangerouslySetInnerHTML={{ __html: text }}
         />
-      </div>
-    )
-  }
-
-  render() {
-    return (
-      <Container>
-        <this.PostContainer />
       </Container>
     )
   }

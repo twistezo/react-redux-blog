@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom'
 import { Navbar as BsNavbar, Button, Container } from 'react-bootstrap'
-import { SearchFormContainer } from '../../containers/SearchFormContainer'
-import { SignInFormContainer } from '../../containers/SignInFormContainer'
+import SearchForm from './SearchForm'
+import SignInForm from './SignInForm'
 import { PUBLIC_URL } from '../../index'
 
 class Navbar extends Component {
@@ -44,7 +44,12 @@ class Navbar extends Component {
               </BsNavbar.Brand>
             </Link>
             <div className='d-flex'>
-              <SearchFormContainer />
+              <SearchForm
+                posts={this.props.posts}
+                filters={this.props.filters}
+                filterPosts={this.props.filterPosts}
+                handleSearchInput={this.props.handleSearchInput}
+              />
               {isSignedIn && (
                 <div className='d-flex'>
                   <div className='hello-user d-flex align-self-center ml-2'>
@@ -62,26 +67,29 @@ class Navbar extends Component {
                   </Link>
                 </div>
               )}
-              <Button
-                className='ml-2 mr-4'
-                variant='outline-info'
-                onClick={this.handleSignInClick}
-              >
-                {isSignedIn ? (
-                  <div>
-                    Sign out &nbsp; <i className='fas fa-sign-out-alt' />
-                  </div>
-                ) : (
-                  <div>
-                    Sign in &nbsp; <i className='fas fa-sign-in-alt' />
-                  </div>
-                )}
-              </Button>
+              <Link to={PUBLIC_URL}>
+                <Button
+                  className='ml-2 mr-4'
+                  variant='outline-info'
+                  onClick={this.handleSignInClick}
+                >
+                  {isSignedIn ? (
+                    <div>
+                      Sign out &nbsp; <i className='fas fa-sign-out-alt' />
+                    </div>
+                  ) : (
+                    <div>
+                      Sign in &nbsp; <i className='fas fa-sign-in-alt' />
+                    </div>
+                  )}
+                </Button>
+              </Link>
             </div>
           </div>
-          <SignInFormContainer
+          <SignInForm
             signInModalShow={this.state.signInModalShow}
             onSignInFormHide={this.handleHideSignInModal}
+            signIn={this.props.signIn}
           />
         </Container>
       </BsNavbar>

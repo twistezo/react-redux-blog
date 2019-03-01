@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { Container, Row } from 'react-bootstrap'
 import AboutMe from './AboutMe'
-import { TagsContainer } from '../../containers/TagsContainer'
-import { ArchivesContainer } from '../../containers/ArchivesContainer'
+import Tags from './Tags'
+import Archives from './Archives'
 
 class SidePanel extends Component {
   render() {
@@ -12,10 +12,20 @@ class SidePanel extends Component {
           <AboutMe />
         </Row>
         <Row className='pb-5'>
-          <TagsContainer />
+          <Tags
+            posts={this.props.posts}
+            filters={this.props.filters}
+            switchTagState={this.props.switchTagState}
+            filterPosts={this.props.filterPosts}
+          />
         </Row>
         <Row className='pb-5'>
-          <ArchivesContainer />
+          <Archives
+            posts={this.props.posts}
+            filters={this.props.filters}
+            switchDateState={this.props.switchDateState}
+            filterPosts={this.props.filterPosts}
+          />
         </Row>
       </Container>
     )

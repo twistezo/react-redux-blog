@@ -1,6 +1,11 @@
 import { connect } from 'react-redux'
 import Navbar from '../components/Navbar/Navbar'
-import { resetFilters, filterPosts, signOut } from '../actions'
+import { signIn, signOut } from '../actions/auth'
+import {
+  filterPosts,
+  handleSearchInput,
+  resetFilters
+} from '../actions/filters'
 
 const mapStateToProps = state => ({
   posts: state.posts.data,
@@ -9,7 +14,13 @@ const mapStateToProps = state => ({
   isSignedIn: state.auth.isSignedIn
 })
 
-const mapDispatchToProps = { resetFilters, signOut, filterPosts }
+const mapDispatchToProps = {
+  filterPosts,
+  handleSearchInput,
+  resetFilters,
+  signIn,
+  signOut
+}
 
 export const NavbarContainer = connect(
   mapStateToProps,

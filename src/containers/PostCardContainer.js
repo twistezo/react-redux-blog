@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
-import PostCard from '../components/MainPanel/PostCards/PostCard'
-import { removePost, editedPostId } from '../actions/'
+import PostCard from '../components/MainPanel/PostCard/PostCard'
+import { removePost, editedPostId } from '../actions/posts'
 
 const mapStateToProps = state => ({
   isSignedIn: state.auth.isSignedIn
