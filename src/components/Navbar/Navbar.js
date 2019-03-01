@@ -21,7 +21,7 @@ class Navbar extends Component {
   }
 
   handleSignInClick = () => {
-    if (this.props.isSignedIn) {
+    if (this.props.auth.isSignedIn) {
       this.props.signOut()
     } else {
       this.setState({ signInModalShow: true })
@@ -33,7 +33,7 @@ class Navbar extends Component {
   }
 
   render() {
-    const isSignedIn = this.props.isSignedIn
+    const isSignedIn = this.props.auth.isSignedIn
     return (
       <BsNavbar bg='dark' variant='light' className='sticky-top text-center'>
         <Container>
@@ -53,7 +53,7 @@ class Navbar extends Component {
               {isSignedIn && (
                 <div className='d-flex'>
                   <div className='hello-user d-flex align-self-center ml-2'>
-                    {'Hello, ' + this.props.displayName + '!'}
+                    {'Hello, ' + this.props.auth.displayName + '!'}
                   </div>
                   <Link className='ml-4' to={PUBLIC_URL + '/addpost'}>
                     <Button variant='outline-info'>
@@ -89,6 +89,7 @@ class Navbar extends Component {
           <SignInForm
             signInModalShow={this.state.signInModalShow}
             onSignInFormHide={this.handleHideSignInModal}
+            auth={this.props.auth}
             signIn={this.props.signIn}
           />
         </Container>

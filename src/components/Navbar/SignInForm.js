@@ -8,13 +8,35 @@ class SignInForm extends Component {
       formData: {
         email: '',
         password: ''
-      }
+      },
+      formValidation: {
+        email: false,
+        password: false
+      },
+      isFormValid: false,
+      isFormValidated: false,
+      authFailed: false
     }
   }
 
   handleSignIn = () => {
-    this.props.signIn(this.state.formData.email, this.state.formData.password)
-    this.props.onSignInFormHide()
+    this.props
+      .signIn(this.state.formData.email, this.state.formData.password)
+      .then(result => {
+        if (result.isSignedIn === false && result.errorMessage !== '') {
+          this.setState({
+            ...this.state,
+            formData: {
+              ...this.state.formData,
+              password: ''
+            },
+            authFailed: true
+          })
+        } else {
+          this.setState({ ...this.state, authFailed: false })
+          this.handleHideSignInModal()
+        }
+      })
   }
 
   handleHideSignInModal = () => {
@@ -24,11 +46,18 @@ class SignInForm extends Component {
   handleFormInputChange = e => {
     const targetName = e.target.name
     const targetValue = e.target.value
+    const isFieldValid = e.target.checkValidity() === true
+    let formValidation = { ...this.state.formValidation }
+    formValidation[targetName] = isFieldValid
+
     this.setState(() => ({
       formData: {
         ...this.state.formData,
         [targetName]: targetValue
-      }
+      },
+      formValidation,
+      isFormValid: Object.values(formValidation).every(v => v === true),
+      isFieldValidated: true
     }))
   }
 
@@ -45,33 +74,53 @@ class SignInForm extends Component {
           <Modal.Title id='contained-modal-title-vcenter'>Sign in</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form className='pt-3'>
+          <Form className='pt-3' validated={this.state.isFieldValidated}>
             <Form.Group>
               <Form.Control
                 name='email'
-                // value={this.state.formData.name}
-                type='text'
+                value={this.state.formData.email}
+                type='email'
                 placeholder='Email'
                 required
                 onChange={this.handleFormInputChange}
               />
+              <Form.Control.Feedback type='invalid'>
+                Incorrect email format.
+              </Form.Control.Feedback>
             </Form.Group>
             <Form.Group>
               <Form.Control
                 name='password'
-                // value={this.state.formData.review}
+                value={this.state.formData.password}
                 type='password'
                 placeholder='Password'
                 required
                 onChange={this.handleFormInputChange}
               />
+              <Form.Control.Feedback type='invalid'>
+                Password is required.
+              </Form.Control.Feedback>
             </Form.Group>
-            <Row className='pt-3 text-center'>
+            {this.state.authFailed && (
+              <Row className='pt-2 text-center'>
+                <Col>
+                  <div className='alert alert-danger' role='alert'>
+                    Wrong email or password.
+                  </div>
+                </Col>
+              </Row>
+            )}
+            <Row className='pt-3 pb-3 text-center'>
               <Col>
                 <Button onClick={this.handleHideSignInModal}>Back</Button>
               </Col>
               <Col>
-                <Button onClick={this.handleSignIn}>Ok</Button>
+                <Button
+                  disabled={!this.state.isFormValid}
+                  onClick={this.handleSignIn}
+                >
+                  Ok
+                </Button>
               </Col>
             </Row>
           </Form>

@@ -10,8 +10,7 @@ import {
 const mapStateToProps = state => ({
   posts: state.posts.data,
   filters: state.filters,
-  displayName: state.auth.displayName,
-  isSignedIn: state.auth.isSignedIn
+  auth: state.auth
 })
 
 const mapDispatchToProps = {
