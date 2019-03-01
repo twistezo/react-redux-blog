@@ -4,7 +4,7 @@
 
 ### Description
 
-Blog created with React, Redux.
+Blog created with React, Redux and Firebase.
 
 Use login `john@gov.com` and password `qwerty` for testing.
 
@@ -19,7 +19,7 @@ Use login `john@gov.com` and password `qwerty` for testing.
 
 ### Tools
 
-React, Redux, Bootstrap
+React 16, Redux 6, Bootstrap 4, Firebase
 
 ### Requirements
 
