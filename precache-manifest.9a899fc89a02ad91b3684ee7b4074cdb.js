@@ -4,19 +4,19 @@ self.__precacheManifest = [
     "url": "/react-redux-blog/static/js/runtime~main.42db9016.js"
   },
   {
-    "revision": "12b5334afb008333f90b",
-    "url": "/react-redux-blog/static/js/main.12b5334a.chunk.js"
+    "revision": "cf7d4b060bf098c46000",
+    "url": "/react-redux-blog/static/js/main.cf7d4b06.chunk.js"
   },
   {
     "revision": "5765f3bed8e659110a55",
     "url": "/react-redux-blog/static/js/2.5765f3be.chunk.js"
   },
   {
-    "revision": "12b5334afb008333f90b",
-    "url": "/react-redux-blog/static/css/main.eb14b9f0.chunk.css"
+    "revision": "cf7d4b060bf098c46000",
+    "url": "/react-redux-blog/static/css/main.97e80ece.chunk.css"
   },
   {
-    "revision": "c5040e7d0f78dce9203652b11c33073a",
+    "revision": "320cc828bc334d7df8f7f896f6b677e9",
     "url": "/react-redux-blog/index.html"
   }
 ];
