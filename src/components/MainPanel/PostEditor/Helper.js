@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Container, Button, Col, Row } from 'react-bootstrap'
 import FormattingHelp from './FormattingHelp'
 import DataUtils from '../../../data/dataUtils'
@@ -111,6 +112,11 @@ class Helper extends Component {
       </Container>
     )
   }
+}
+
+Helper.propTypes = {
+  onPasteExample: PropTypes.func,
+  variant: PropTypes.string
 }
 
 export default Helper

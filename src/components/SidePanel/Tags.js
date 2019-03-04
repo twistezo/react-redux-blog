@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { PostsDataShape, FiltersShape } from '../../data/propTypes'
 import { Link } from 'react-router-dom'
 import { Container, Badge } from 'react-bootstrap'
 import { PUBLIC_URL } from '../../index'
@@ -46,6 +48,13 @@ class Tags extends Component {
       </Container>
     )
   }
+}
+
+Tags.propTypes = {
+  posts: PostsDataShape,
+  filters: FiltersShape,
+  filterPosts: PropTypes.func,
+  switchTagState: PropTypes.func
 }
 
 export default Tags

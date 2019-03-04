@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { FilteredPostsShape } from '../../data/propTypes'
 import { Container } from 'react-bootstrap'
 import { PostCardContainer } from '../../containers/PostCardContainer'
 
@@ -33,7 +34,7 @@ class MainBoard extends Component {
 
   render() {
     return (
-      <Container>
+      <Container className='pb-5'>
         <h3 className='pb-3'>Latest posts</h3>
         <this.HeadPosts />
         <hr className='pb-2' />
@@ -41,6 +42,10 @@ class MainBoard extends Component {
       </Container>
     )
   }
+}
+
+MainBoard.propTypes = {
+  filteredPosts: FilteredPostsShape
 }
 
 export default MainBoard

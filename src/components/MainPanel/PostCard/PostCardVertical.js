@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { Col, Card, Button, ButtonGroup } from 'react-bootstrap'
+import PropTypes from 'prop-types'
+import { Col, Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { PUBLIC_URL } from '../../../index'
+import { Post } from '../../../data/index'
 
 class PostCardVertical extends Component {
   render() {
@@ -36,9 +38,10 @@ class PostCardVertical extends Component {
           </p>
           {this.props.isSignedIn && (
             <Col className='align-self-center text-center pt-2'>
-              <ButtonGroup className='btn-group-sm'>
+              <div>
                 <Link to={PUBLIC_URL + '/editpost'}>
                   <Button
+                    className='btn-sm'
                     variant='outline-primary'
                     onClick={this.props.onEditPost}
                   >
@@ -47,18 +50,26 @@ class PostCardVertical extends Component {
                 </Link>
                 <Button
                   variant='outline-primary'
-                  className='ml-3'
+                  className='btn-sm ml-3'
                   onClick={this.props.onRemovePost}
                 >
                   Remove &nbsp; <i className='fas fa-trash-alt' />
                 </Button>
-              </ButtonGroup>
+              </div>
             </Col>
           )}
         </div>
       </Card>
     )
   }
+}
+
+PostCardVertical.propTypes = {
+  post: PropTypes.instanceOf(Post),
+  postURL: PropTypes.string,
+  isSignedIn: PropTypes.bool,
+  onEditPost: PropTypes.func,
+  onRemovePost: PropTypes.func
 }
 
 export default PostCardVertical

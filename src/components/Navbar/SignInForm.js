@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Form, Col, Row, Button, Modal } from 'react-bootstrap'
 
 class SignInForm extends Component {
@@ -112,10 +113,16 @@ class SignInForm extends Component {
             )}
             <Row className='pt-3 pb-3 text-center'>
               <Col>
-                <Button onClick={this.handleHideSignInModal}>Back</Button>
+                <Button
+                  variant='outline-info'
+                  onClick={this.handleHideSignInModal}
+                >
+                  Back
+                </Button>
               </Col>
               <Col>
                 <Button
+                  variant='outline-info'
                   disabled={!this.state.isFormValid}
                   onClick={this.handleSignIn}
                 >
@@ -128,6 +135,12 @@ class SignInForm extends Component {
       </Modal>
     )
   }
+}
+
+SignInForm.propTypes = {
+  signIn: PropTypes.func,
+  onSignInFormHide: PropTypes.func,
+  signInModalShow: PropTypes.bool,
 }
 
 export default SignInForm

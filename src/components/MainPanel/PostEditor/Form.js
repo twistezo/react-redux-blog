@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { Container, Form, Button } from 'react-bootstrap'
-import uuidv1 from 'uuid/v1'
+import { Container, Form as BsForm, Button } from 'react-bootstrap'
 import { PUBLIC_URL } from '../../../index'
 import DataUtils from '../../../data/dataUtils'
 import Post from '../Post'
 import { Post as PostObject } from '../../../data/index'
 
-class Editor extends Component {
+class Form extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -63,8 +63,8 @@ class Editor extends Component {
 
   handleFinishEdit = () => {
     this.props.onFinishEditPost(
-      new Post(
-        this.props.variant === 'add' ? uuidv1() : this.props.sourcePost.id,
+      new PostObject(
+        this.props.sourcePost.id,
         this.state.formData.title,
         this.state.formData.shortDescription,
         this.state.formData.text,
@@ -100,9 +100,9 @@ class Editor extends Component {
       <Container>
         <div className='pb-4'>
           <h5 className='pb-2'>Let's write</h5>
-          <Form validated={this.state.isFieldValidated}>
-            <Form.Group>
-              <Form.Control
+          <BsForm validated={this.state.isFieldValidated}>
+            <BsForm.Group>
+              <BsForm.Control
                 name='title'
                 value={this.state.formData.title}
                 type='text'
@@ -111,12 +111,12 @@ class Editor extends Component {
                 maxLength='100'
                 onChange={this.handleInputChange}
               />
-              <Form.Control.Feedback type='invalid'>
+              <BsForm.Control.Feedback type='invalid'>
                 This field is required. Max length is 100.
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
+              </BsForm.Control.Feedback>
+            </BsForm.Group>
+            <BsForm.Group>
+              <BsForm.Control
                 name='shortDescription'
                 as='textarea'
                 value={this.state.formData.shortDescription}
@@ -125,12 +125,12 @@ class Editor extends Component {
                 rows='3'
                 onChange={this.handleInputChange}
               />
-              <Form.Control.Feedback type='invalid'>
+              <BsForm.Control.Feedback type='invalid'>
                 This field is required.
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
+              </BsForm.Control.Feedback>
+            </BsForm.Group>
+            <BsForm.Group>
+              <BsForm.Control
                 name='text'
                 as='textarea'
                 value={this.state.formData.text}
@@ -139,12 +139,12 @@ class Editor extends Component {
                 required
                 onChange={this.handleInputChange}
               />
-              <Form.Control.Feedback type='invalid'>
+              <BsForm.Control.Feedback type='invalid'>
                 This field is required.
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
+              </BsForm.Control.Feedback>
+            </BsForm.Group>
+            <BsForm.Group>
+              <BsForm.Control
                 name='mainImage'
                 value={this.state.formData.mainImage}
                 type='text'
@@ -153,12 +153,12 @@ class Editor extends Component {
                 required
                 onChange={this.handleInputChange}
               />
-              <Form.Control.Feedback type='invalid'>
+              <BsForm.Control.Feedback type='invalid'>
                 This field is required. Ex. https://example.com/image.svg
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group>
-              <Form.Control
+              </BsForm.Control.Feedback>
+            </BsForm.Group>
+            <BsForm.Group>
+              <BsForm.Control
                 name='tags'
                 value={this.state.formData.tags}
                 type='text'
@@ -167,12 +167,12 @@ class Editor extends Component {
                 required
                 onChange={this.handleInputChange}
               />
-              <Form.Control.Feedback type='invalid'>
+              <BsForm.Control.Feedback type='invalid'>
                 This field is required. Tags must be separated with space. Ex.
                 rust java scss
-              </Form.Control.Feedback>
-            </Form.Group>
-            <Form.Group className='d-flex justify-content-end'>
+              </BsForm.Control.Feedback>
+            </BsForm.Group>
+            <BsForm.Group className='d-flex justify-content-end'>
               <Link to={PUBLIC_URL}>
                 <Button
                   variant='outline-primary'
@@ -182,8 +182,8 @@ class Editor extends Component {
                   {this.props.variant === 'add' ? 'Add' : 'Edit'}
                 </Button>
               </Link>
-            </Form.Group>
-          </Form>
+            </BsForm.Group>
+          </BsForm>
         </div>
         <Post
           variant={'preview'}
@@ -205,4 +205,10 @@ class Editor extends Component {
   }
 }
 
-export default Editor
+Form.propTypes = {
+  onFinishEditPost: PropTypes.func,
+  authDisplayName: PropTypes.string,
+  variant: PropTypes.string
+}
+
+export default Form

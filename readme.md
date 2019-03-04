@@ -1,7 +1,5 @@
 ## react-redux-blog
 
-<img src="https://udayrajon.files.wordpress.com/2018/03/work-in-progress.jpg" width="250"/>
-
 ### Description
 
 Blog created with React, Redux and Firebase.
@@ -14,8 +12,8 @@ Use login `john@gov.com` and password `qwerty` for testing.
 - create and edit posts with Markdown markup langauge
 - live preview while creating post
 - Firebase Cloud Firestore as database
-- CRUD
-- settings (user data, debug features)
+- settings (user data, debug features) // in progress
+- light and dark theme switched by bulb icon
 
 ### Tools
 

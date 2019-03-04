@@ -1,48 +1,58 @@
-@import 'loading';
-@import 'animations';
-
 @import url('https://use.fontawesome.com/releases/v5.7.0/css/all.css');
 @import url('https://fonts.googleapis.com/css?family=Lato:200,300,400,700');
-$font-family-base: Lato;
 @import url('https://fonts.googleapis.com/css?family=Quicksand:200,300,400,700');
-$headings-font-family: Quicksand;
 
-$enable-grid-classes: false;
-
-$primary: #528078;
-$secondary: #eed75a;
-$success: $primary;
-$danger: #703b3b;
-$info: $primary;
-$warning: #ffe869;
-$light: #fdfbf7;
-$dark: white;
-$black: #333;
-@import '../../node_modules/bootstrap/scss/bootstrap';
-@import '../../node_modules/bootstrap/scss/functions';
-@import '../../node_modules/bootstrap/scss/variables';
-@import '../../node_modules/bootstrap/scss/mixins';
-@import '../../node_modules/bootstrap/scss/reboot';
-@import '../../node_modules/bootstrap/scss/type';
-@import '../../node_modules/bootstrap/scss/images';
-@import '../../node_modules/bootstrap/scss/code';
-@import '../../node_modules/bootstrap/scss/grid';
+@import 'loading';
+@import 'animations';
+@import 'themes';
 
 html {
   overflow-y: scroll;
-}
-
-.wait-container {
-  height: 100vh;
-  .wait-text {
-    padding-bottom: 150px;
+  body {
+    @extend %day-mode;
+    &.night-mode {
+      @extend %night-mode;
+      & .modal-content {
+        @extend %night-mode;
+      }
+    }
   }
-}
 
-a,
-.alert-link {
-  color: inherit;
-  font-weight: inherit;
+  .theme-switcher {
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  .wait-container {
+    height: 100vh;
+    .wait-text {
+      padding-bottom: 150px;
+    }
+  }
+
+  a,
+  .alert-link {
+    color: inherit;
+    font-weight: inherit;
+  }
+
+  button,
+  nav {
+    font-family: Quicksand;
+  }
+
+  nav {
+    .form-inline {
+      @media (max-width: 575.98px) {
+        width: 35%;
+      }
+    }
+    .fa-search {
+      position: relative;
+      right: 35px;
+    }
+  }
 }
 
 #about-me {
@@ -73,38 +83,7 @@ a,
   }
 }
 
-button:hover i {
-  .card {
-    color: white;
-  }
-  nav {
-    color: black;
-  }
-}
-
-button,
-nav {
-  font-family: Quicksand;
-}
-
-nav {
-  box-shadow: 0 0.25px 5px rgba(0, 0, 0, 0.2);
-  .hello-user {
-    color: $black;
-  }
-  .fa-search {
-    color: $info;
-    position: relative;
-    right: 35px;
-  }
-  input {
-    color: $black !important;
-    background-color: $dark !important;
-    border-color: $info !important;
-  }
-}
-
-.post {
+#post {
   padding-bottom: 100px;
   p {
     text-align: justify;
@@ -120,5 +99,14 @@ nav {
   }
   li > p {
     margin-bottom: 8px;
+  }
+}
+
+@media (max-width: 991.98px) {
+  .container {
+    max-width: 100% !important;
+  }
+  .side-panel {
+    padding-left: 15px;
   }
 }

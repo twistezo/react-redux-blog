@@ -14,9 +14,11 @@ class AboutMe extends Component {
             height='100'
           />
         </Row>
-        <Row className='pb-2'>
+        <Row className='pb-1'>
           <h5>John Smith</h5>
-          <span>Full-stack developer</span>
+        </Row>
+        <Row className='pb-1'>
+          <p>Full-stack developer</p>
         </Row>
         <Row className=''>
           <a

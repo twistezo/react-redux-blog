@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { PostsDataShape } from '../../data/propTypes'
 import { Container, Col } from 'react-bootstrap'
 import DataUtils from '../../data/dataUtils'
 
@@ -20,7 +22,7 @@ class Post extends Component {
     const text = DataUtils.convertMarkdownToHtml(post.text)
 
     return (
-      <Container className='post'>
+      <Container id='post'>
         {variant === 'preview' && (
           <div>
             <h4>Live preview</h4>
@@ -52,6 +54,12 @@ class Post extends Component {
       </Container>
     )
   }
+}
+
+Post.propTypes = {
+  posts: PostsDataShape,
+  variant: PropTypes.string,
+  routeParamId: PropTypes.string
 }
 
 export default Post

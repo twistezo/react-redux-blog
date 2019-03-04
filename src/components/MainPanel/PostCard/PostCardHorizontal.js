@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
-import { Row, Card, Col, Button, ButtonGroup } from 'react-bootstrap'
+import PropTypes from 'prop-types'
+import { Row, Card, Col, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { PUBLIC_URL } from '../../../index'
+import { Post } from '../../../data/index'
 
 class PostsCardHorizontal extends Component {
   render() {
@@ -10,7 +12,7 @@ class PostsCardHorizontal extends Component {
     return (
       <Card className='mb-3'>
         <div className='row no-gutters'>
-          <div className='col-md-3 d-flex flex-wrap align-items-center'>
+          <div className='col-md-3 d-flex flex-wrap align-items-center justify-content-center pt-4 pt-md-0'>
             <Link to={postURL}>
               <img src={post.mainImage} className='card-img pl-3' alt='' />
             </Link>
@@ -20,12 +22,12 @@ class PostsCardHorizontal extends Component {
               <Link to={postURL}>
                 <h5 className='card-title'>{post.title}</h5>
               </Link>
-              <p className='card-text'>
+              <p className='card-text text-justify'>
                 {post.shortDescription.substring(0, 150) + '...'}
               </p>
               <span className='card-text'>
                 <Row>
-                  <Col>
+                  <Col className='flex-fill'>
                     <p className='text-muted mb-0'>
                       {post.author +
                         ', ' +
@@ -44,24 +46,27 @@ class PostsCardHorizontal extends Component {
                     </p>
                   </Col>
                   {this.props.isSignedIn && (
-                    <Col className='align-self-center'>
-                      <ButtonGroup className='float-right btn-group-sm'>
+                    <Col className='align-self-center pt-3 pt-sm-0'>
+                      <div className='float-right'>
                         <Link to={PUBLIC_URL + '/editpost'}>
                           <Button
+                            className='btn-sm'
                             variant='outline-primary'
                             onClick={this.props.onEditPost}
                           >
-                            Edit &nbsp; <i className='fas fa-edit' />
+                            Edit &nbsp;
+                            <i className='fas fa-edit' />
                           </Button>
                         </Link>
                         <Button
                           variant='outline-primary'
-                          className='ml-3'
+                          className='btn-sm ml-3'
                           onClick={this.props.onRemovePost}
                         >
-                          Remove &nbsp; <i className='fas fa-trash-alt' />
+                          Remove &nbsp;
+                          <i className='fas fa-trash-alt' />
                         </Button>
-                      </ButtonGroup>
+                      </div>
                     </Col>
                   )}
                 </Row>
@@ -72,6 +77,14 @@ class PostsCardHorizontal extends Component {
       </Card>
     )
   }
+}
+
+PostsCardHorizontal.propTypes = {
+  post: PropTypes.instanceOf(Post),
+  postURL: PropTypes.string,
+  isSignedIn: PropTypes.bool,
+  onEditPost: PropTypes.func,
+  onRemovePost: PropTypes.func
 }
 
 export default PostsCardHorizontal

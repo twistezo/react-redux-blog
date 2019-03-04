@@ -1,0 +1,149 @@
+/** 
+  Day mode
+  Overriden bootstrap variables 
+*/
+$font-family-base: Lato;
+$headings-font-family: Quicksand;
+$enable-grid-classes: false;
+$primary: #528078;
+$info: $primary;
+$success: $primary;
+$black: #212529;
+$yellow: #ffe869;
+
+/** Night mode colors */
+$total-black: #000000;
+$dark: #222929;
+$medium-dark-a: #343a40;
+$medium-dark-b: #3d434b;
+$medium-dark-c: #434a54;
+$light-text: #e4e3e3;
+$semi-light-text: #b1b1b1;
+$green: #19aa66;
+
+@import '../../node_modules/bootstrap/scss/bootstrap';
+@import '../../node_modules/bootstrap/scss/functions';
+@import '../../node_modules/bootstrap/scss/variables';
+@import '../../node_modules/bootstrap/scss/mixins';
+@import '../../node_modules/bootstrap/scss/reboot';
+@import '../../node_modules/bootstrap/scss/type';
+@import '../../node_modules/bootstrap/scss/images';
+@import '../../node_modules/bootstrap/scss/code';
+@import '../../node_modules/bootstrap/scss/grid';
+
+%day-mode {
+  color: $black;
+
+  nav {
+    box-shadow: 0 0.25px 5px rgba(0, 0, 0, 0.2);
+    background-color: $white;
+    .navbar-brand {
+      color: $black !important;
+    }
+    button {
+      border: none !important;
+    }
+    input {
+      border: 0 !important;
+      border-radius: 0px !important;
+      border-bottom: 0.2px solid lightgray !important;
+    }
+  }
+
+  button:hover > i,
+  button:hover > div > span > i {
+    color: $white;
+  }
+
+  .side-panel {
+    .badge {
+      color: $black;
+      background-color: $yellow;
+    }
+  }
+
+  .fa,
+  .fas {
+    color: $info;
+  }
+}
+
+%night-mode {
+  color: $light-text;
+  background-color: $medium-dark-a;
+  a,
+  .alert-link,
+  .table {
+    color: inherit;
+  }
+
+  nav {
+    box-shadow: 0 0.25px 5px rgba(0, 0, 0, 0.2);
+    background-color: $dark;
+    .navbar-brand {
+      color: $light-text !important;
+    }
+    button {
+      border: none;
+    }
+  }
+
+  button {
+    color: $light-text;
+    &:focus {
+      box-shadow: none;
+    }
+    &:hover {
+      background-color: $green;
+      &,
+      > i,
+      > div > span > i {
+        color: $total-black;
+      }
+    }
+  }
+
+  input,
+  textarea {
+    border: 0 !important;
+    border-radius: 5px !important;
+    &,
+    &:active,
+    &:focus {
+      border-color: $dark;
+      background-color: $medium-dark-c;
+      color: $light-text;
+    }
+    &::placeholder {
+      color: $semi-light-text;
+    }
+  }
+
+  .side-panel {
+    .badge {
+      color: $black;
+      background-color: $green;
+    }
+  }
+
+  .fa,
+  .fas {
+    color: $green;
+  }
+
+  hr {
+    border-color: $medium-dark-c;
+  }
+
+  .card {
+    border: none;
+    background-color: $medium-dark-c;
+    .card-footer {
+      border: none;
+      background-color: $medium-dark-b;
+    }
+    .text-muted {
+      color: $semi-light-text !important;
+    }
+  }
+}

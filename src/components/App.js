@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { PostsShape, FilteredPostsShape } from '../data/propTypes'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import { Row, Col, Container } from 'react-bootstrap'
 import { NavbarContainer } from '../containers/NavbarContainer'
@@ -29,11 +31,9 @@ class App extends Component {
 
   componentDidMount() {
     this.props.fetchPosts()
-    // DataUtils.addPostsToFirestore(20);
   }
 
   componentDidUpdate(prevProps) {
-    // console.log(window.store.getState())
     const posts = this.props.posts
     if (posts !== prevProps.posts) {
       this.setState({
@@ -68,7 +68,7 @@ class App extends Component {
         <div className='container text-center h-100 d-flex flex-column justify-content-center'>
           <Row className='wait-text'>
             <Col>
-              <h2>{this.state.waitMessage + `.`}</h2>
+              <h2 className='mb-5'>{this.state.waitMessage + `.`}</h2>
             </Col>
           </Row>
           <div className='box-loading' />
@@ -85,10 +85,10 @@ class App extends Component {
           <NavbarContainer />
           <Container>
             <Row className='pt-5'>
-              <Col sm={3}>
+              <Col md={3} className='side-panel d-none d-lg-block'>
                 <SidePanelContainer />
               </Col>
-              <Col sm={9}>
+              <Col sm={12} lg={9}>
                 <Switch>
                   <Route
                     exact
@@ -141,7 +141,7 @@ class App extends Component {
   }
 
   render() {
-    if (this.props.posts.length !== 0 && this.state.error === null) {
+    if (this.props.posts.data.length !== 0 && this.state.error === null) {
       return <this.MainContainer />
     } else if (this.state.error !== null) {
       return <this.ErrorContainer />
@@ -149,6 +149,13 @@ class App extends Component {
       return <this.WaitContainer />
     }
   }
+}
+
+App.propTypes = {
+  posts: PostsShape,
+  filteredPosts: FilteredPostsShape,
+  isSignedIn: PropTypes.bool,
+  fetchPosts: PropTypes.func
 }
 
 export default App

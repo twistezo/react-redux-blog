@@ -1,4 +1,6 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { PostsDataShape, FiltersShape } from '../../data/propTypes'
 import { Container, Row } from 'react-bootstrap'
 import AboutMe from './AboutMe'
 import Tags from './Tags'
@@ -19,7 +21,7 @@ class SidePanel extends Component {
             filterPosts={this.props.filterPosts}
           />
         </Row>
-        <Row className='pb-5'>
+        <Row>
           <Archives
             posts={this.props.posts}
             filters={this.props.filters}
@@ -27,9 +29,18 @@ class SidePanel extends Component {
             filterPosts={this.props.filterPosts}
           />
         </Row>
+        <hr className='pb-2 d-lg-none' />
       </Container>
     )
   }
+}
+
+SidePanel.propTypes = {
+  posts: PostsDataShape,
+  filters: FiltersShape,
+  filterPosts: PropTypes.func,
+  switchDateState: PropTypes.func,
+  switchTagState: PropTypes.func
 }
 
 export default SidePanel

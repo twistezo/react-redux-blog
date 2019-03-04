@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
+import { PostsShape, FiltersShape } from '../../../data/propTypes'
 import { Container } from 'react-bootstrap'
 import Form from './Form'
 import Helper from './Helper'
+import uuidv1 from 'uuid/v1'
 
-class AddPost extends Component {
+class PostEditor extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -28,6 +31,7 @@ class AddPost extends Component {
   }
 
   handlePasteExample = examplePost => {
+    examplePost.id = uuidv1()
     this.setState({ sourcePost: examplePost })
   }
 
@@ -53,4 +57,12 @@ class AddPost extends Component {
   }
 }
 
-export default AddPost
+PostEditor.propTypes = {
+  posts: PostsShape,
+  filters: FiltersShape,
+  authDisplayName: PropTypes.string,
+  variant: PropTypes.string,
+  addPost: PropTypes.func
+}
+
+export default PostEditor

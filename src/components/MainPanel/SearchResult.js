@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { FilteredPostsShape } from '../../data/propTypes'
 import { Container } from 'react-bootstrap'
 import { PostCardContainer } from '../../containers/PostCardContainer'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
@@ -35,7 +36,7 @@ class SearchResult extends Component {
 
   render() {
     return (
-      <Container>
+      <Container className='pb-5'>
         {this.props.filteredPosts.length !== 0 ? (
           <this.PostCards />
         ) : (
@@ -44,6 +45,10 @@ class SearchResult extends Component {
       </Container>
     )
   }
+}
+
+SearchResult.propTypes = {
+  filteredPosts: FilteredPostsShape
 }
 
 export default SearchResult

@@ -1,6 +1,11 @@
 import ReducersUtils from './reducersUtils'
 
-export const posts = (state = [], action) => {
+const PostsShape = {
+  data: [],
+  fetchingError: null
+}
+
+export const posts = (state = PostsShape, action) => {
   switch (action.type) {
     case 'POSTS_FETCHED_SUCCESS':
       return {

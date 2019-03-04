@@ -11,8 +11,6 @@ import './styles/_index.scss'
 export const PUBLIC_URL = process.env.PUBLIC_URL
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
-// TODO: Remove. For debugging purposes only!
-window.store = store
 
 ReactDOM.render(
   <Provider store={store}>

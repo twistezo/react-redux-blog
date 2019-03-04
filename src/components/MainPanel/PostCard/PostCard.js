@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { PUBLIC_URL } from '../../../index'
 import PostCardHorizontal from './PostCardHorizontal'
 import PostCardVertical from './PostCardVertical'
+import { Post } from '../../../data/index'
 
 class PostsCard extends Component {
   handleEditPost = () => {
@@ -52,6 +54,14 @@ class PostsCard extends Component {
       )
     return card
   }
+}
+
+PostsCard.propTypes = {
+  editedPostId: PropTypes.func,
+  removePost: PropTypes.func,
+  cardVersion: PropTypes.string,
+  post: PropTypes.instanceOf(Post),
+  isSignedIn: PropTypes.bool
 }
 
 export default PostsCard
