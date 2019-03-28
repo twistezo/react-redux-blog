@@ -2,9 +2,11 @@
 
 ### Description
 
-Blog created with React, Redux and Firebase.
+Blog with live Markdown post editor and dark/light mode.
 
-Use login `john@gov.com` and password `qwerty` for testing.
+For testing use login `john@gov.com` and password `qwerty`.
+
+Latest version: https://twistezo.github.io/react-redux-blog/
 
 ### Features
 
@@ -17,27 +19,19 @@ Use login `john@gov.com` and password `qwerty` for testing.
 
 ### Tools
 
-React 16, Redux 6, Bootstrap 4, Firebase
-
-### Requirements
-
-npm
+React, Redux, Bootstrap, Firebase
 
 ### Build, run, test
 
-Firstly: `npm install`
+Build: `npm install`
 
-To run in development mode: `npm start`
+Run in development mode: `npm start`
 
-To build in production mode: `npm run build`
+Build in production mode: `npm run build`
 
-To run locally prod mode:
+To run locally in production mode:
 
 ```
 npm install -g serve
 serve -s build
 ```
-
-### Latest version
-
-https://twistezo.github.io/react-redux-blog/
